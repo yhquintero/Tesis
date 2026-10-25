@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "backend": "native",
+  "rasterEngine": "pdfium",
+  "source": "saved",
+  "inputPath": "D:\\Proyectos\\Github\\Tesis\\analysis\\contrato.pdf",
+  "sourceSha256": "12976542663fd664ef4351e6a6f6309a57f9475cf5a2c4ea8a15c424a7454c15",
+  "dpi": 144,
+  "pageCount": 1,
+  "images": [
+    {
+      "index": 1,
+      "page": 1,
+      "path": "D:\\Proyectos\\Github\\Tesis\\analysis\\.dsh-office-f3ee8e7ac44645a48ccf1e0b6561263d\\render\\page-0001.png",
+      "width": 1191,
+      "height": 1684,
+      "rectangle": {
+        "x": 0,
+        "y": 0,
+        "width": 793.7333333333333,
+        "height": 1122.5333333333333
+      },
+      "byteLength": 239922
+    }
+  ],
+  "missingFonts": []
+}

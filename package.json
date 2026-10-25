@@ -1,0 +1,17 @@
+{
+  "name": "prenomina-upr",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sistema de Gestión de Contratos Determinados y Pagos por Sobrecarga Docente - Departamento de Informática UPR",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "start": "node server/src/main.js",
+    "dev": "node --watch server/src/main.js",
+    "seed": "node server/src/seed.js --force",
+    "test": "node --test server/test/",
+    "backup": "node server/src/tools/backup.js"
+  }
+}

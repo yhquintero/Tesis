@@ -1,0 +1,89 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/D:/Proyectos/Github/Tesis/android/.gradle-home/wrapper/dists/gradle-8.14.5-bin/690y85m0j9nfaub7xoiayko8a/gradle-8.14.5/lib/native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Starting a Gradle Daemon, 1 incompatible and 6 stopped Daemons could not be reused, use --status for details
+Caught exception: Couldn't open current thread, error = 5
+Exception in thread "File watcher server" net.rubygrapefruit.platform.NativeException: Couldn't open current thread, error = 5
+	at org.gradle.fileevents.internal.AbstractNativeFileEventFunctions$NativeFileWatcher.initializeRunLoop0(Native Method)
+	at org.gradle.fileevents.internal.AbstractNativeFileEventFunctions$NativeFileWatcher.initializeRunLoop(AbstractNativeFileEventFunctions.java:25)
+	at org.gradle.fileevents.internal.AbstractFileEventFunctions$AbstractFileWatcher$1.run(AbstractFileEventFunctions.java:151)
+
+> Configure project :app
+Unable to initialize metrics, ensure C:\Users\usuario\.android is writable, details: C:\Users\usuario\.android\analytics.settings (Acceso denegado)
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :app:kspDebugKotlin
+> Task :app:compileDebugKotlin
+w: file:///D:/Proyectos/Github/Tesis/android/app/src/main/java/cu/upr/informatica/prenomina/ui/pantallas/AjustesScreen.kt:135:43 'val Icons.Filled.Logout: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.Logout.
+w: file:///D:/Proyectos/Github/Tesis/android/app/src/main/java/cu/upr/informatica/prenomina/ui/pantallas/AjustesScreen.kt:202:39 'val Icons.Filled.HelpOutline: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.HelpOutline.
+w: file:///D:/Proyectos/Github/Tesis/android/app/src/main/java/cu/upr/informatica/prenomina/ui/pantallas/AjustesScreen.kt:249:31 'val Icons.Filled.HelpOutline: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.HelpOutline.
+w: file:///D:/Proyectos/Github/Tesis/android/app/src/main/java/cu/upr/informatica/prenomina/ui/pantallas/ContratosScreen.kt:235:35 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///D:/Proyectos/Github/Tesis/android/app/src/main/java/cu/upr/informatica/prenomina/ui/pantallas/ContratosScreen.kt:463:35 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///D:/Proyectos/Github/Tesis/android/app/src/main/java/cu/upr/informatica/prenomina/ui/pantallas/ProfesoresScreen.kt:234:35 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///D:/Proyectos/Github/Tesis/android/app/src/main/java/cu/upr/informatica/prenomina/ui/theme/Theme.kt:73:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///D:/Proyectos/Github/Tesis/android/app/src/main/java/cu/upr/informatica/prenomina/ui/theme/Theme.kt:74:20 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
+
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugGlobalSynthetics UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource UP-TO-DATE
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:mergeProjectDexDebug
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleDebug
+> Task :app:kspDebugUnitTestKotlin
+> Task :app:compileDebugUnitTestKotlin
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes UP-TO-DATE
+> Task :app:testDebugUnitTest
+
+[Incubating] Problems report is available at: file:///D:/Proyectos/Github/Tesis/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.5/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 41s
+45 actionable tasks: 10 executed, 35 up-to-date

@@ -1,0 +1,206 @@
+===== TABLE 1 rows=2 cols=2 =====
+Autor(es): | Yosvany Hernández Quintero
+Tutor: | MsC. Ricardo Inouye Rodríguez
+===== TABLE 2 rows=3 cols=2 =====
+Categoría | Hallazgos (Ejemplos)
+Debilidad | 15 archivos Excel no integrados; fórmulas erróneas en 25% de contratos históricos.
+Amenaza | 3 incidentes anuales de fuga de datos sensibles.
+===== TABLE 3 rows=3 cols=3 =====
+Método | Instrumento | Muestra
+Análisis documental | Anexo H (50 contratos) | 12 hojas Excel auditadas
+Encuestas | Anexo I | 15 contratos, 21 profesores
+===== TABLE 4 rows=4 cols=3 =====
+Software | Fortalezas | Limitaciones en contexto cubano
+SAP ERP | Módulo financiero robusto | Costo prohibitivo (USD 50,000+/año)
+Moodle + Plugins | Familiaridad del personal | No soporta firma digital ni cálculos
+ContratApp | Especializado en contratos | No adaptable a leyes laborales cubanas
+===== TABLE 5 rows=5 cols=3 =====
+Entidad | Atributos | Descripción
+Administrador | ID, Nombre, Rol | Usuario con permisos para gestionar contratos y pagos.
+Contrato | ID, Fecha inicio, Fecha fin, Partes, Cláusulas, Estado | Acuerdo temporal para actividades docentes adicionales.
+Sobrecarga | ID, Monto, Fecha, Contrato asociado, Estado | Pagos por sobrecarga docente realizada por un profesor.
+Profesor | ID, Nombre, Departamento, Correo, Carga docente | Miembro del personal docente que puede firmar contratos por sobrecarga.
+===== TABLE 6 rows=4 cols=2 =====
+Actor del Negocio | Descripción
+Administrador | El Administrador tiene un rol crucial en la gestión del sistema. Es responsable de crear, aprobar nuevas cuentas de usuarios, editar o eliminar cuentas existentes, y configurar el sistema según las necesidades de la organización. Además, tiene acceso a visualizar y guardar el Dashboard en resolución 4K, así como imprimir reportes para su análisis detallado.
+Empleado | El Empleado se encarga de la gestión de contratos dentro de la plataforma. Sus tareas incluyen crear nuevos contratos, actualizar información de contratos existentes, eliminar contratos que ya no son necesarios, y exportar uno o todos los contratos a formato PDF. También puede mostrar y guardar el Dashboard en resolución 4K, así como imprimir reportes relacionados con su trabajo para su posterior revisión.
+Profesor | El Profesor tiene la responsabilidad de gestionar la información de otros educadores dentro del sistema. Puede agregar, editar y eliminar registros de profesores, así como exportar la lista de profesores a un archivo Excel. Además, tiene la capacidad de exponer y proteger el Dashboard en resolución 4K y de imprimir reportes para su uso administrativo, asegurando una gestión eficiente de la información educativa
+===== TABLE 7 rows=13 cols=2 =====
+Caso de uso: | Iniciar Sesión
+Actor(es): | Administrador, Empleado, Profesor
+Propósito: | Autenticar identidad para acceso seguro al sistema
+Descripción: | El Usuario ingresa email/contraseña; el sistema verifica y concede acceso.
+Referencias: | RF 1 (Iniciar Sesión)
+Precondiciones: | 1. Servidor de autenticación activo. 2. Usuario registrado y "Aprobado".
+Poscondiciones: | 1. Sesión iniciada. 2. Redirección al dashboard según el rol.
+Acción del actor | Respuesta del sistema
+1. Ingresa email. | 2. Valida formato (ejemplo: "usuario@dominio.com").
+3. Ingresa contraseña. | 4. Verifica hash en MongoDB.
+5. Presiona "Iniciar". | 6. Redirige a dashboard personalizado (≤2 segundos).
+Flujos alternativos | FA1: Credenciales inválidas → Sistema bloquea tras 5 intentos.
+Requerimientos especiales: | Seguridad: Contraseñas encriptadas (bcrypt). Accesibilidad: Soporte WCAG 2.1.
+===== TABLE 8 rows=13 cols=2 =====
+Caso de uso: | Crear Contrato
+Actor(es): | Empleado (inicia el caso de uso)
+Propósito: | Permitir al Empleado generar un nuevo contrato en el sistema para formalizar acuerdos con profesores u otras partes.
+Descripción: | El Empleado accede al módulo de contratos, completa los datos requeridos, y el sistema valida y almacena el contrato. El proceso inicia con la selección de "Crear contrato" y finaliza con la confirmación del registro o un mensaje de error.
+Referencias: | Incluye: "Exportar contrato a PDF". Extiende: "Actualizar contrato". Requerimientos asociados: RF 5.1 Crear Contratos
+Precondiciones: | 1-) El Empleado debe haber iniciado sesión. 2-) El sistema debe tener activos los campos obligatorios (ejemplo: datos personales).
+Poscondiciones: | 1. El contrato se registra en la base de datos. 2. Se genera un ID único asociado al contrato.
+Acción del actor | Respuesta del sistema
+1. Selecciona "Crear contrato". | 2. Muestra el formulario con campos obligatorios (ejemplo: nombre, fechas, cláusulas).
+3. Ingresa los datos requeridos. | 4. Valida que los campos estén completos y en formato correcto (ejemplo: fechas válidas, montos numéricos).
+5. Confirma el envío. | 6. Almacena el contrato y muestra: "Contrato creado exitosamente".
+Flujos alternativos | FA1: Datos inválidos: Sistema muestra error y solicita corrección. FA2: Cancelación: Datos se descartan y retorna al menú.
+Requerimientos especiales: | Seguridad: Solo Empleados autenticados pueden crear contratos. Tiempo de respuesta: Menos de 5 segundos para guardar. Validación: Formato de campos estricto (ejemplo: fechas en DD/MM/AAAA, se tomará automáticamente de la hora del Servidor Local).
+===== TABLE 9 rows=13 cols=2 =====
+Caso de uso: | Exportar Lista de Profesores a Excel
+Actor(es): | Profesor (inicia)
+Propósito: | Generar un reporte en Excel con datos de profesores.
+Descripción: | El Profesor aplica filtros (ejemplo: estado "Activo") y exporta la lista.
+Referencias: | RF 6.4 (Exportar Lista de Profesores)
+Precondiciones: | 1. Usuario autenticado como "Profesor". 2. Módulo de reporting activo.
+Poscondiciones: | 1. Archivo Excel descargado en dispositivo.
+Acción del actor | Respuesta del sistema
+1. Navega a "Reportes". | 2. Muestra opciones de filtrado.
+3. Selecciona filtros. | 4. Valida criterios (ejemplo: fechas válidas).
+5. Haz clic en "Exportar". | 6. Genera Excel y muestra "Descarga completada".
+Flujos alternativos | FA1: Sin datos → Sistema muestra "No hay registros".
+Requerimientos especiales: | Rendimiento: ≤10 segundos para 500 registros. Formato: .xlsx.
+===== TABLE 10 rows=4 cols=3 =====
+Actor | Tipo | Factor
+Administrador | Complejo (GUI) | 3
+Empleado | Complejo (GUI) | 3
+Profesor | Complejo (GUI) | 3
+===== TABLE 11 rows=4 cols=4 =====
+Tipo de Caso de Uso | Transacciones | Factor | Ejemplos
+Simple (Color Básico) | ≤3 | 5 | Iniciar Sesión
+Promedio (Color Naranja) | Entre 4 ó 7 | 10 | Modificar Contraseña
+Complejo (Color Verde) | >7 | 15 | -
+===== TABLE 12 rows=21 cols=5 =====
+RF | Caso de Uso | Transacciones Estimadas | Complejidad | Factor
+RF 1 | Iniciar Sesión | 3 | Simple | 5
+RF 2 | Cerrar Sesión | 1 | Simple | 5
+RF 3 | Modificar Contraseña | 4 | Promedio | 10
+RF 4.1 | Crear Usuario | 5 | Promedio | 10
+RF 4.2 | Aprobar Usuario | 3 | Simple | 5
+RF 4.3 | Modificar Usuario | 4 | Promedio | 10
+RF 4.4 | Eliminar Usuario | 3 | Simple | 5
+RF 4.5 | Configurar Sistema | 6 | Promedio | 10
+RF 5.1 | Crear Contratos | 6 | Promedio | 10
+RF 5.2 | Actualizar Contratos | 5 | Promedio | 10
+RF 5.3 | Eliminar Contratos | 3 | Simple | 5
+RF 5.4 | Exportar Contrato a PDF | 2 | Simple | 5
+RF 5.5 | Exportar TODOS los Contratos a PDF | 2 | Simple | 5
+RF 6.1 | Agregar Profesores | 5 | Promedio | 10
+RF 6.2 | Editar Profesores | 4 | Promedio | 10
+RF 6.3 | Eliminar Profesores | 3 | Simple | 5
+RF 6.4 | Exportar TODOS los Profesores a Excel | 2 | Simple | 5
+RF 7 | Dashboard Interactivo | 3 | Simple | 5
+RF 8.1 | Recuperar Contraseña | 3 | Simple | 5
+RF 8.2 | Contactar Soporte | 1 | Simple | 5
+===== TABLE 13 rows=8 cols=3 =====
+Conceptos | Valor | Explicación
+Puntos de Casos de Uso (sin ajustar) (PCUs) | 149 | Estimación inicial basada en actores y casos de uso.
+Factor de Complejidad Técnica (FCT) | 1.015 | Impacto de 13 Factores Técnicos en la complejidad del sistema.
+Factor de Ambiente (FA) | 0.605 | Influencia de 8 Factores Ambientales en la productividad.
+Puntos de Casos de Uso Ajustados (PCUA) | 91 | PCUs ajustados por complejidad técnica y ambiente.
+Esfuerzo Total (ET) | 3,412.50 H/H | Horas-hombre requeridas para todas las etapas del proyecto.
+Tiempo de Desarrollo (TDES) | 1,706.25 Horas | Duración con 2 desarrolladores (≈213 días).
+Costo Total (CT) | $ 30,712.50 | Costo monetario total, incluyendo salarios y gastos indirectos.
+===== TABLE 14 rows=5 cols=3 =====
+Capa | Tecnología | Función
+Transporte | TLS 1.3 (OpenSSL) | Encriptación punto a punto
+Autenticación | JWT + bcrypt (Node.js) | Hash de contraseñas (salt rounds: 10)
+Autorización | RBAC con roles: Admin/Profesor/Empleado | Restricción por endpoints (ejemplo: solo el usuario con el rol Admin puede eliminar usuarios)
+Auditoría | Winston Logger (archivos rotativos) | Traza de acciones críticas
+===== TABLE 15 rows=12 cols=1 =====
+Caso de Uso: Iniciar Sesión
+Caso de Prueba: CP-AUTH-001 Verificación de credenciales válidas
+Descripción
+En situaciones reales, los usuarios del Departamento de Informática necesitan acceder al sistema diariamente para gestionar usuarios. Este caso prueba el escenario donde un solo Administrador ingresa credenciales correctas después de 2 intentos fallidos previos. Datos de entrada: Usuario: " yhquintero@gmail.com ", Contraseña: "C0ntr@seña2025!". Estado almacenado: Usuario registrado con rol "Admin", estado "Aprobado", y 2 intentos fallidos registrados en los últimos 10 minutos.
+Condiciones de ejecución
+Servidor de autenticación activo (Node.js en puerto 3000) Usuario existente en MongoDB con: json { "_id": { "$oid": "678d89cfe136bae97d233aa4" }, "email": " yhquintero@gmail.com ", "password": "$2b$10$KG/P6y6ym/NATK1CpHgatON2jebnC8o57BmJc.XegYuKQVUL7bqQy", "role": "Determinado", "status": "Aprobado", "permissions": { "Crear": true, "Leer": true, "Actualizar": true, "Eliminar": true }, "__v": 0 },
+Entrada
+Abrir navegador en https://127.0.0.1:8000 Ingresar en campo "Correo Electrónico": yhquintero@gmail.com Ingresar en campo "Contraseña": C0ntr@seña2025! Presionar botón "Iniciar Sesión"
+Resultado esperado
+Redirección a la dirección https://127.0.0.1:8000/#/listado_usuario en ≤2 segundos Mensaje de bienvenida: "Listado de Usuarios, " Reset de contador de intentos fallidos en BD (failed_attempts: 0) Registro en log: {email: " yhquintero@gmail.com ", action: "login_success", ip: "127.0.0.1"}
+Evaluación de la prueba
+✅ Realizado y satisfactorio Validado en ambiente de pruebas con datos reales 31/05/2025*
+===== TABLE 16 rows=12 cols=1 =====
+Caso de Uso: Crear Contrato
+Caso de Prueba: Generar contrato PDF
+Descripción
+Validar que el sistema permita generar un contrato en formato PDF desde la interfaz web. Los datos deben corresponder a un contrato existente y el archivo debe ser descargable.
+Condiciones de ejecución
+El usuario debe haber iniciado sesión con rol de Empleado. Debe existir al menos un contrato registrado en la base de datos. { "_id": { "$oid": "678d8a6d0ea81700477b8235" }, "email": "yhquintero1983@gmail.com", "password": "$2b$10$MYcb2ctgX6lOvqXpb/BObOPSCe2ehhgUzKWTwbaYf3uMs28cO3WXy", "role": "Determinado", "status": "Aprobado", "permissions": { "Crear": true, "Leer": true, "Actualizar": true, "Eliminar": true }, "__v": 0 },
+Entrada
+Abrir navegador en https://127.0.0.1:8000 Ingresar en campo "Correo Electrónico": yhquintero1983@gmail.com Ingresar en campo "Contraseña": C0ntr@seña2025! Presionar botón "Iniciar Sesión" Navegar al botón: Adicionar Introducir los valores correspondientes Hacer clic en "Agregar Empleado" Seleccionar un contrato de la lista. Hacer clic en el botón "Exportar a PDF". Respuesta del sistema Validar que el contrato esté activo y tenga datos completos. Generar el archivo PDF con la plantilla predefinida. Mostrar mensaje: "PDF generado exitosamente" y habilitar descarga.
+Resultado esperado
+Redirección a la dirección https://127.0.0.1:8000/#/prenomina en ≤2 segundos Mensaje de bienvenida: "Prenómina de Empleados, y muestra la cantidad de Empleados dentro de (##)" Reset de contador de intentos fallidos en BD (failed_attempts: 0) Registro en log: { email: "yhquintero1983@gmail.com", action: "login_success", ip: "127.0.0.1"}
+Evaluación de la prueba
+✅ Realizado y satisfactorio / ❌ Fallido / ⚠️ Pendiente de evaluación Comentarios: Validado en ambiente de pruebas con 10 contratos de ejemplo. Se verificó integridad de datos y tiempo de generación.
+===== TABLE 17 rows=12 cols=1 =====
+Caso de Uso: Exportar Lista de Profesores a Excel
+Caso de Prueba: CP-REPORT-003 Generación de reporte con filtro semestral
+Descripción
+Los usuarios con el Rol Profesores requieren reportes, mensuales, trimestrales, semestrales, anuales, para rendición de cuentas. Este caso prueba la generación de un Excel con profesores activos (enero-junio 2025) que tienen pagos pendientes. Datos de entrada: Filtros: Semestre = "2025-01", Estado = "Aprobado", Tipo = "Sobrecarga". Estado almacenado: 21 profesores en BD cumplen criterios, 3 con pagos pendientes*
+Condiciones de ejecución
+Usuario autenticado con el Rol de Profesor, ejemplo: { "_id": { "$oid": "67797fa9f4a20500342164dd" }, "email": "amandabeatrizherrerarodriguez@gmail.com", "password": "$2b$10$gq.GUoD.ORMeGdC/F8IhvOw4GsbPz4m9HkFrWBPYHKoQHuNu2M1fG", "role": "Sobrecarga", "status": "Aprobado", "permissions": { "Crear": true, "Leer": true, "Actualizar": true, "Eliminar": true }, "__v": 0 }, Módulo de reporting activo Librería 'package:flutter/material.dart'; instalada en servidor
+Entrada
+Abrir navegador en https://127.0.0.1:8000 Ingresar en campo "Correo Electrónico": amandabeatrizherrerarodriguez@gmail.com Ingresar en campo "Contraseña": C0ntr@seña2025! Presionar botón "Iniciar Sesión" Navegar a Dashboard > Reportes Seleccionar filtros: Período: Enero 2025 Junio 2025 Estado: Activo Tipo: Sobrecarga Hacer clic en "Exportar a Excel"
+Resultado esperado
+Redirección a la dirección https://127.0.0.1:8000/#/profesores en ≤2 segundos Mensaje de bienvenida: "Calculadora de Prenómina de Profesores, y muestra la cantidad de Profesores dentro de (##)" Reset de contador de intentos fallidos en BD (failed_attempts: 0) Registro en log: { email: " amandabeatrizherrerarodriguez@gmail.com ", action: "login_success", ip: "127.0.0.1"}
+Evaluación de la prueba
+⚠️ Pendiente de evaluación Programado para revisión el 01/06/2025 Equipo de Profesores*
+===== TABLE 18 rows=4 cols=5 =====
+Escenario | Usuarios Concurrentes | Tiempo Respuesta Promedio | Errores (%) | Uso RAM Máximo
+Generación de contratos | 50 | 2.1 seg | 0.0% | 1.2 GB
+Exportación masiva (Excel) | 30 | 8.5 seg | 0.5% | 1.8 GB
+Acceso al Dashboard 4K | 100 | 3.2 seg | 1.2% | 2.5 GB
+===== TABLE 19 rows=14 cols=4 =====
+Factor Técnico | Descripción | Peso | Ejemplo en este Proyecto
+T1. Sistema Distribuido | ¿Requiere comunicación entre servidores remotos? | 2 | Sí: Backend en Node.js + MongoDB → Calificación: 3 → 2×3=6.
+T2. Rendimiento | ¿Es crítico el tiempo de respuesta? | 2 | Dashboard en 4K con carga rápida → Calificación: 2 → 2×4=4.
+T3. Eficiencia usuario | ¿Se necesita optimizar recursos (CPU/RAM)? | 1 | Limitación de RAM en PowerShell → Calificación: 4 → 1×4=4.
+T4. Procesamiento interno | ¿Hay operaciones complejas (ejemplo: MongoDB)? | 1 | Transacciones para pagos → Calificación: 3 → 1×3=3.
+T5. Reusabilidad | ¿El código debe ser reusable para otros proyectos? | 1 | Módulos en Flutter/Node.js → Calificación: 2 → 1×2=2.
+T6. Facilidad de Instalación | ¿La instalación es compleja? | 0.5 | Scripts automatizados (PowerShell) → Calificación: 4 → 0.5×4=2.
+T7. Facilidad de Uso | ¿La interfaz es intuitiva? | 0.5 | UI → Calificación: 5 → 0.5×5=2.5.
+T8. Portabilidad | ¿Debe funcionar en múltiples plataformas? | 2 | Flutter Web (multiplataforma) → Calificación: 2 → 2×2=4.
+T9. Facilidad cambio | ¿Es fácil corregir/mejorar el sistema? | 1 | Documentación detallada → Calificación: 3 → 1×3=3.
+T10. Concurrencia | ¿Se adapta a cambios en requisitos? | 1 | Metodología RUP®→ Calificación: 4 → 1×4=4.
+T11. Seguridad | ¿Requiere cifrado, roles, auditoría? | 1 | TLS 1.3 + roles RBAC → Calificación: 5 → 1×5=5.
+T12. Acceso a Terceros | ¿Integra APIs externas? | 1 | Posible integración con SAP → Calificación: 1 → 1×0=0.
+T13. Entrenamiento especial | ¿El equipo necesita capacitación? | 1 | Curva de aprendizaje ≤30 min → Calificación: 2 → 1×2=2.
+===== TABLE 20 rows=9 cols=4 =====
+Factor Ambiental | Descripción | Peso | Ejemplo en este Proyecto
+E1. Familiaridad con la Metodología | ¿Conocen RUP® | 1.5 | Equipo con experiencia en RUP® → Calificación: 3 → 1.5×3=4.5
+E2. Experiencia en la Aplicación | ¿Han trabajado en sistemas similares? | 0.5 | Proyectos previos en gestión académica → Calificación: 2 → 0.5×2=1.
+E3. Experiencia en Orientación a Objetos | ¿Dominan POO? | 1 | Node.js + Flutter (basados en POO) → Calificación: 4 → 1×4=4.
+E4. Capacidad del Líder | ¿El líder tiene habilidades técnicas y de gestión? | 0.5 | Líder con certificación PMP → Calificación: 4 → 0.5×4=2.
+E5. Motivación | ¿El equipo está comprometido? | 1 | Equipo multidisciplinario y proactivo → Calificación: 4 → 1×4=4.
+E6. Estabilidad de Requisitos | ¿Los requisitos cambiaron frecuentemente? | 2 | Requisitos claros desde el inicio → Calificación: 4 → 2×4=8.
+E7. Personal a Tiempo Parcial | ¿Hay miembros con disponibilidad limitada? | -1 | Algunos colaboradores externos → Calificación: 3 → −1×3=−3.
+E8. Dificultad del Lenguaje | ¿El stack tecnológico es complejo? | 2 | Flutter + Node.js (moderado) → Calificación: 3 → 2×3=6.
+===== TABLE 21 rows=6 cols=3 =====
+Especialista | Título académico y experiencia | Evaluación
+MsC. Jorge Garrido González | Maestría en Informática, 10 años en desarrollo de sistemas. | 9/10 en seguridad, comentarios específicos.
+MsC. Oliver W. Milán Tellería | Maestría en Informática, 10 años en desarrollo de sistemas. | 9/10 en seguridad, comentarios específicos.
+MsC. Eliomar Rodríguez Izquierdo | Maestría en Informática, 10 años en desarrollo de sistemas. | 9/10 en seguridad, comentarios específicos.
+MsC. Walfrido Novas Orama | Maestría en Informática, 10 años en desarrollo de sistemas. | 9/10 en seguridad, comentarios específicos.
+MsC. Ricardo Inouye Rodríguez | Maestría en Informática, 10 años en desarrollo de sistemas. | 9/10 en seguridad, comentarios específicos.
+===== TABLE 22 rows=3 cols=5 =====
+Grupo | Tarea | Sistema Antiguo (min) | Sistema Propuesto (min) | Reducción (%)
+Determinado | Generar contrato | 45 | 8 min | 82.22
+Sobrecarga | Verificar pago | 30 | 3 min | 90.00
+===== TABLE 23 rows=9 cols=4 =====
+Aspecto | Flutter (Web) | React (Next.js) | Veredicto
+Rendimiento | Tiempo carga inicial: 1.8s (release mode). Uso RAM: 120MB (app básica). | Tiempo carga inicial: 2.5s (optimizado). Uso RAM: 180MB (con Redux). | ✅ Flutter es 25% más rápido.
+Desarrollo | Lenguaje: Dart (fácil para devs Java/C#). Hot Reload: 3s (estable). | Lenguaje: JavaScript/TypeScript. Hot Reload: 1.5s (más rápido). | ⚠️ React gana en flexibilidad.
+Offline-First | Soporte nativo con Hive (NoSQL local). | Requiere librerías externas (ejemplo: PouchDB). | ✅ Flutter es más robusto.
+UI/UX | Widgets nativos consistentes en todas las plataformas. | Depende de CSS/Reactstrap (inconsistencias en navegadores). | ✅ Flutter unifica diseño.
+Comunidad en Cuba | 12 meetups anuales (2024) + soporte de UCI. | Comunidad más grande, pero menos organizada. | ⚠️ Empate técnico.
+Seguridad | Cifrado con dart:crypto. | Depende de paquetes (ejemplo: crypto-js). | ✅ Flutter integra mejor seguridad.
+Costos | $0 (open-source). | $0 (open-source), pero requiere más librerías pagadas para funcionalidades avanzadas. | ✅ Flutter más económico.
+Compatibilidad MES | Fácil integración con sistemas legacy (PowerShell). | Requiere configuraciones adicionales. | ✅ Flutter se adapta mejor.

@@ -1,0 +1,9 @@
+{
+  "name": "prenomina-qa",
+  "private": true,
+  "type": "module",
+  "description": "Utilidades de verificación visual del proyecto (no forma parte de la aplicación).",
+  "dependencies": {
+    "playwright-core": "^1.49.0"
+  }
+}

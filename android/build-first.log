@@ -1,0 +1,40 @@
+Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
+.............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/D:/Proyectos/Github/Tesis/android/.gradle-home/wrapper/dists/gradle-8.11.1-bin/bpt9gzteqjrbo1mjrsomdt32c/gradle-8.11.1/lib/native-platform-0.22-milestone-26.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Starting a Gradle Daemon, 3 incompatible and 2 stopped Daemons could not be reused, use --status for details
+
+> Configure project :app
+Unable to initialize metrics, ensure C:\Users\usuario\.android is writable, details: C:\Users\usuario\.android\analytics.settings (Acceso denegado)
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateDebugBuildConfig
+> Task :app:checkDebugAarMetadata
+> Task :app:generateDebugResValues
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:parseDebugLocalResources
+> Task :app:mergeDebugResources
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:javaPreCompileDebug
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :app:desugarDebugFileDependencies
+> Task :app:processDebugManifestForPackage
+> Task :app:mergeDebugJniLibFolders
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugNativeLibs
+> Task :app:mergeExtDexDebug

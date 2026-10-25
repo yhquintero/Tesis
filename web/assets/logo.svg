@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Prenómina UPR">
+  <circle cx="32" cy="32" r="32" fill="#1B5E20"/>
+  <path d="M18 22c5-2 9-1 14 2 5-3 9-4 14-2v22c-5-2-9-1-14 2-5-3-9-4-14-2z" fill="#FFFFFF" opacity=".95"/>
+  <path d="M32 24v20" stroke="#1B5E20" stroke-width="2" stroke-linecap="round"/>
+  <path d="M22 27c2.6-.6 4.7 0 7 1.4M22 32c2.6-.6 4.7 0 7 1.4M22 37c2.6-.6 4.7 0 7 1.4" stroke="#2E7D32" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M42 27c-2.6-.6-4.7 0-7 1.4M42 32c-2.6-.6-4.7 0-7 1.4M42 37c-2.6-.6-4.7 0-7 1.4" stroke="#2E7D32" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M32 9l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z" fill="#C9A227"/>
+</svg>

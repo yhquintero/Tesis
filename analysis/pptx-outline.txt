@@ -1,0 +1,195 @@
+SLIDES 29 SIZE 12192000x6858000
+--- SLIDE 1 ---
+Título: Sistema Informático para la Gestión de Contratos Determinados y Pagos por Sobrecarga Docente en el Departamento de Informática de la Universidad de Pinar del Río
+Autor(es):   Amanda Beatriz Herrera Rodríguez
+	       Yosvany Hernández Quintero
+Pinar del Río, 2025
+“Año 67 de la Revolución”
+Tutor: MsC. Ricardo Inouye Rodríguez
+Facultad de Ciencias Técnicas
+Departamento de Informática
+Tesis presentada en opción al Título Académico de Ingeniero en Informática
+--- SLIDE 2 ---
+Introducción
+Presentar un sistema informático diseñado para la gestión de contratos determinados y pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río
+Aumentar la eficiencia administrativa.
+Reducir errores en la gestión.
+Facilitar el acceso a información relevante para la toma de decisiones.
+Beneficios del Sistema
+Mejoras Esperadas:
+--- SLIDE 3 ---
+Situación Problemática del Departamento de Informática
+En el Departamento de Informática se identifican oportunidades de optimización en la gestión de contratos determinados y pagos por sobrecarga docente. Los procesos actuales, predominantemente manuales, pueden generar desafíos operativos que impactan tanto a los profesores como al equipo administrativo, requiriendo esfuerzos adicionales para garantizar precisión en los resultados.
+--- SLIDE 4 ---
+¿Cómo contribuir a la gestión de la información asociada a la gestión de contratos determinados y el procesamiento de pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río?
+La gestión de contratos determinados y los pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río.
+Desarrollar una aplicación informática que permita la gestión de la información asociada a la gestión de contratos determinados y el procesamiento de pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río.
+Problema Científico
+Objeto de Investigación
+Objetivo General
+--- SLIDE 5 ---
+Analizar el contexto actual
+Revisión de la literatura sobre gestión de contratos y sistemas de información, con el fin de establecer un marco teórico sólido que respalde la investigación.
+Definir la metodología y herramientas
+Análisis de los procesos actuales de gestión en el departamento, identificando fortalezas, debilidades y áreas de mejora.
+Modelar el sistema
+Diseño del sistema informático, considerando las necesidades del usuario y los requisitos funcionales y no funcionales del sistema.
+Desarrollar el sistema informático
+Desarrollo e implementación del sistema, asegurando que se cumplan los estándares de calidad y se integre adecuadamente en el entorno operativo.
+Tareas de la investigación
+Realizar pruebas y validaciones
+Ejecución de pruebas utilizando datos reales en el software para verificar su correcto funcionamiento y validar su eficacia en la gestión de contratos.
+--- SLIDE 6 ---
+Sistemas Afines
+Sistemas como SAP ERP, Moodle + Plugins y ContratApp, ofrecen soluciones de gestión, pero son costosos y no están adaptados a las necesidades específicas del departamento, justificando una solución personalizada.
+Software | Fortalezas | Limitaciones en contexto cubano
+SAP ERP | Módulo financiero robusto | Costo prohibitivo (USD 50,000+/año)
+Moodle + Plugins | Familiaridad del personal | No soporta firma digital ni cálculos
+ContratApp | Especializado en contratos | No adaptable a leyes laborales cubanas
+Decisión Justificada:
+Desarrollar un sistema ad-hoc es la única opción viable, dado que las alternativas existentes:
+No resuelven el 60% de las necesidades identificadas en el diagnóstico.
+Implicarían inversiones incompatibles con el presupuesto institucional.
+--- SLIDE 7 ---
+Metodología, Tecnologías y Herramientas
+Metodología
+Modelar diagramas
+Construir diagramas
+Estimación del Costo del Software
+Arquitectura: Flutter Web Framework (Frontend)
+Lenguaje
+Editor de código
+Enterprise Architect versión 16
+Automatización
+(Backend)
+Gestor de Base de Datos
+[NOTES] Ventajas clave: Soporte offline-first para zonas rurales, cifrado TLS 1.3, generación automática de certificados SSL.
+--- SLIDE 8 ---
+Modelo del Dominio
+--- SLIDE 9 ---
+RF1. Iniciar Sesión
+RF2. Cerrar Sesión
+RF3. Modificar Contraseña
+RF4. Gestionar Usuario
+RF5. Gestión de Contratos
+RF6. Gestión de Profesores
+RF7. Dashboard Interactivo
+RF8. Soporte Técnico
+Requerimientos Funcionales
+--- SLIDE 10 ---
+Interfaz y Diseño
+Interfaz intuitiva y accesible
+Diseño responsivo para todos los dispositivos
+Estética profesional y consistente
+Cumplimiento de estándares WCAG 2.1 de accesibilidad web
+Usabilidad
+Flujos de trabajo optimizados (tareas clave en pocos pasos)
+Retroalimentación clara para el usuario
+Documentación y manuales de apoyo
+Requerimientos No Funcionales
+--- SLIDE 11 ---
+Rendimiento
+Tiempo de respuesta: ≤2 segundos (login), ≤10 segundos (exportar Excel con 500 registros)
+Soporte para múltiples usuarios concurrentes
+Optimización mediante caché y paginación
+Escalabilidad para crecimiento futuro
+Seguridad
+Autenticación: Bcrypt + JWT.
+Control de acceso: RBAC (Administrador/Profesor/Empleado).
+Auditoría: Registro de logs con Winston.
+Cifrado: TLS 1.3 (OpenSSL).
+Requerimientos No Funcionales
+--- SLIDE 12 ---
+Fiabilidad
+Alta disponibilidad (99.5% uptime)
+Sistema de backups automáticos diarios
+Procesos de recuperación rápida (≤1 hora)
+Pruebas exhaustivas (unitarias, estrés y validación)
+Requerimientos No Funcionales
+--- SLIDE 13 ---
+Diagrama de Casos de Uso del Sistema
+--- SLIDE 14 ---
+Estimación del Costo del Software Total, Enterprise Architect, versión 16
+Distribución del Esfuerzo
+a) Por actividades
+Actividad | % Esfuerzo | Horas-Hombre
+Análisis | 20% | 682.500
+Diseño | 20% | 682.500
+Implementación | 40% | 1,365.000
+Pruebas | 15% | 511.875
+Otros | 5% | 170.625
+Total | 100% | 3,412.50
+b) Por fases RUP
+Fase RUP | % Esfuerzo | Horas-Hombre
+Concepción | 5% | 170.625
+Elaboración | 20% | 682.500
+Construcción | 65% | 2,218.125
+Transición | 10% | 341.250
+Total | 100% | 3,412.50
+--- SLIDE 15 ---
+Factor de conversión (FC): 15 H/H por PCUA
+Esfuerzo, tiempo de desarrollo y costo del proyecto
+Coeficiente de costos indirectos (K): 1.44
+Implementación (40%)
+160 horas/mes (8h/día x 4 semanas x 5 días)
+--- SLIDE 16 ---
+Aporte a la tesis:
+
+Estandariza la planificación: Utiliza metodologías reconocidas (UCP de Karner) para garantizar transparencia.
+Optimiza recursos: Permite ajustar plazos aumentando el equipo sin incrementar costos.
+Valida viabilidad: Demuestra que el proyecto puede completarse en un poco más de 7 meses con un equipo de 2 personas y un presupuesto de $ 30,712.50.
+Conceptos | Valor | Explicación
+Puntos de Casos de Uso (sin ajustar) (PCUs) | 149 | Estimación inicial basada en actores y casos de uso.
+Factor de Complejidad Técnica (FCT) | 1.015 | Impacto de 13 Factores Técnicos en la complejidad del sistema.
+Factor de Ambiente (FA) | 0.605 | Influencia de 8 Factores Ambientales en la productividad.
+Puntos de Casos de Uso Ajustados (PCUA) | 91 | PCUs ajustados por complejidad técnica y ambiente.
+Esfuerzo Total (ET) | 3,412.50 H/H | Horas-hombre requeridas para todas las etapas del proyecto.
+Tiempo de Desarrollo (TDES) | 1,706.25 Horas | Duración con 2 desarrolladores (≈213 días).
+Costo Total (CT) | $ 30,712.50 | Costo monetario total, incluyendo salarios y gastos indirectos.
+Tabla Resumen Final
+--- SLIDE 17 ---
+Diagrama de Secuencias Casos de Uso del Autenticar
+--- SLIDE 18 ---
+Diagrama de Modelo de Despliegue de Servidor - BD
+--- SLIDE 19 ---
+Inicio
+--- SLIDE 20 ---
+Registro
+--- SLIDE 21 ---
+Acceso al Usuarios del Sistema
+--- SLIDE 22 ---
+Dashboard 4K. Usuarios.
+--- SLIDE 23 ---
+Acceso al Listado de Profesores Determinados
+--- SLIDE 24 ---
+Acceso al Listado de Profesores por Sobrecarga Docente
+--- SLIDE 25 ---
+Dashboard 4K. Profesores
+--- SLIDE 26 ---
+Conclusiones
+Fundamento Teórico Alcanzado: A través de una revisión exhaustiva de la literatura, se estableció un marco teórico sólido que identificó lagunas en la gestión de contratos y pagos, proporcionando una base para el desarrollo del sistema.
+Rigor Metodológico: El análisis de los procesos actuales del departamento permitió identificar fortalezas, debilidades y oportunidades de mejora, lo que orientó el diseño y desarrollo del sistema.
+Diseño de Soluciones Centrado en el Usuario: El modelado del sistema priorizó las necesidades de los usuarios, asegurando que los requisitos funcionales y no funcionales se alinearan con las demandas operativas reales.
+Viabilidad Operativa: El sistema fue desarrollado con tecnologías modernas (Flutter Web, Node.js, MongoDB) y diseñado para integrarse al entorno operativo existente, cumpliendo con estándares de calidad y sostenibilidad.
+Validación de Efectividad: Las pruebas con datos reales confirmaron la funcionalidad y efectividad del sistema, demostrando su capacidad para gestionar contratos y pagos de manera eficiente.
+--- SLIDE 27 ---
+Recomendaciones
+Se proponen las siguientes recomendaciones para fortalecer el sistema y garantizar su continuidad operativa:
+Implementación de Backups Automáticos:
+Establecer un sistema de respaldos automáticos para proteger la información sensible y garantizar su disponibilidad.
+Configurar respaldos regulares almacenados en servidores seguros o en la nube, minimizando el riesgo de pérdida de datos en caso de fallos del sistema.
+Protección de Información Crítica:
+Reforzar la seguridad mediante encriptación avanzada, control de acceso basado en roles (RBAC) y monitoreo continuo de las actividades del sistema.
+Realizar auditorías periódicas para verificar la integridad y confidencialidad de los datos, asegurando el cumplimiento de normativas de protección de datos.
+Recuperación Rápida de Datos:
+Desarrollar un plan de recuperación de desastres que permita restaurar los datos en menos de una hora en caso de fallos del sistema.
+Realizar pruebas periódicas del plan de recuperación para garantizar su efectividad y capacitar al personal en su ejecución.
+Buscando mejorar la robustez del sistema y garantizar la seguridad de los datos.
+--- SLIDE 28 ---
+“¡Gracias! ¿Preguntas?”
+--- SLIDE 29 ---
+1.  ¿Cómo maneja el sistema situaciones de conectividad intermitente, especialmente considerando que fue diseñado para zonas con baja infraestructura tecnológica?
+Preguntas del Oponente
+2. ¿Qué criterios se tomaron para seleccionar la metodología RUP frente a metodologías ágiles más modernas como Scrum?
+3. ¿Por qué se eligió MongoDB como gestor de base de datos y no una base relacional como MySQL o PostgreSQL?
+4. ¿Qué mecanismos de seguridad implementó en la aplicación informática para proteger los datos sensibles?

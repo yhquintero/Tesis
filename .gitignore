@@ -1,0 +1,7 @@
+# Android / Gradle
+.gradle/
+build/
+android/.gradle/
+android/build/
+.gradle-home/
+.pnpm-store

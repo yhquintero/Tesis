@@ -1,0 +1,909 @@
+PARAGRAPHS 1148 TABLES 23 SECTIONS 4
+[1][Normal] Facultad de Ciencias Técnicas
+[2][Normal] Departamento de Informática
+[5][Normal] TRABAJO DE DIPLOMA
+[6][Normal] (Tesis presentada en opción al título de Ingeniero en Informática)
+[8][Normal] Sistema Informático para la Gestión de Contratos Determinados y Pagos por Sobrecarga Docente en el Departamento de Informática de la Universidad de Pinar del Río
+[14][Normal] Pinar del Río
+[15][Normal] 2025
+[17][Heading 1] DECLARACIÓN DE AUTORÍA.
+[18][Normal] Declaro que los resultados que aparecen en este informe son producto de la investigación realizada por este autor, por lo tanto, yo como mi tutor nos hacemos responsables de ellos. De igual forma autorizo a la Universidad de Pinar del Río “Hermanos Saíz Montes de Oca” a hacer uso del contenido de esta tesis con la finalidad que se estime conveniente.
+[20][Normal] _____________________________			__________________________
+[26][Normal] autoriza la divulgación del presente trabajo de diploma bajo licencia Creative Commons de tipo Reconocimiento No Comercial Sin Obra Derivada, se permite su copia y distribución por cualquier medio siempre que mantenga el reconocimiento de sus autores, no haga uso comercial de las obras y no realice ninguna modificación de ellas. La licencia completa puede consultarse en: http://creativecommons.org/licenses/by-nc-nd/2.5/ar/legalcode
+[28][Normal] autoriza al  adscrito a la Universidad de Pinar del Río a distribuir el presente trabajo de diploma en formato digital bajo la licencia Creative Commons descrita anteriormente y a conservarlo por tiempo indefinido, según los requerimientos de la institución, en el repositorio de materiales didácticos disponible en:
+[30][Normal] autoriza al  adscrito a la Universidad de Pinar del Río a distribuir el presente trabajo de diploma en formato digital bajo la licencia Creative Commons descrita anteriormente y a conservarlo por tiempo indefinido, según los requerimientos de la institución, en el repositorio de tesinas disponible en: http://revistas.mes.edu.cu
+[31][Heading 1] Pensamiento o frase.
+[33][Normal] "Pienso, luego programo… pero también pruebo, documento y mantengo."
+[34][Normal] (Versión informática del "Cogito, ergo sum" ("Pienso, luego existo") de Descartes, integrando prácticas profesionales esenciales).
+[35][Heading 1] DEDICATORIA. Ing. Yosvany Hernández Quintero
+[37][Normal] "A las raíces que sostienen mis alas,
+[38][Normal] a las estrellas que guiaron mi noche,
+[39][Normal] y al futuro que hoy construyo con orgullo..."
+[40][Normal] A mi Madre, la fuerza inquebrantable:
+[41][Normal] Tus manos, que sembraron paciencia en cada sacrificio, tus palabras, que convirtieron mis dudas en certezas, y tu corazón, que late en cada línea de código que escribí. Eres el algoritmo perfecto del amor incondicional.
+[42][Normal] A mi Padre, aunque el viento te lleve lejos de mi vista:
+[43][Normal] Tu nombre está impreso en cada desafío que superé, en cada problema que resolví con tenacidad heredada, y en el "¡Lo lograste!" que susurra en mis sueños.
+[44][Normal] Hoy gradúo mi alma de Ingeniero, pero tu orgullo es mi Título Eterno.
+[45][Normal] A mi Hermano y Amigo, Ing. Yoesdany Hernández Quintero:
+[46][Normal] Compañero de fórmulas, cómplice de noches sin dormir, tú fuiste el "Ctrl+Z" que corrigió mis errores, el "commit" que respaldó cada paso, y la prueba de que la Ingeniería también se escribe en ADN.
+[47][Normal] A mis hijos, Yonhairo e Yainery, mis motivos en código binario:
+[48][Normal] Que este diploma sea la primera página del libro que escribiremos juntos.
+[49][Normal] Soñé con verlos volar… y hoy les muestro que las raíces también aprenden a ascender.
+[50][Normal] Sus nombres ya están grabados en mi tesis más valiosa: "Futuro.exe".
+[51][Normal] A mi Amor, Lazarita, mi Puerto Seguro en este mar de algoritmos:
+[52][Normal] Tus abrazos fueron mi Firewall contra el desánimo, tu fe, el lenguaje que nunca necesitó compilarse, y tu sonrisa, la interfaz perfecta para recordarme que cada ciclo tiene su recompensa.
+[53][Normal] Hoy no cierro un capítulo…
+[54][Normal] sincronizo mi corazón con quienes hicieron posible este "commit" final.
+[55][Normal] "Y a la Universidad de Pinar del Río “Hermanos Saíz Montes de Oca”: gracias por ser el IDE donde este Programa encontró su propósito".
+[56][Normal] Versión 1.0: Ingeniero en Sistemas. Siempre: Administrador de Redes.
+[57][Normal] Próximo release: Papá orgulloso".
+[58][Heading 1] AGRADECIMIENTOS.
+[60][Normal] Agradecemos en Especial al MsC. Ricardo Inouye Rodríguez por su guía invaluable, a TODOS los profesores del Departamento de Ingeniería Informática y de otras Áreas de la Carrera de Informática, por facilitarnos los recursos a lo largo de estos 6 años, y a nuestros compañeros por su colaboración y retroalimentación
+[62][Heading 1] RESUMEN.
+[64][Normal] Ante la ineficiencia del proceso manual de gestión de contratos docentes y cálculos de pagos por sobrecarga en el Departamento de Informática de la Universidad de Pinar del Río, se desarrolló un sistema informático modular basado en Flutter Web, Node.js y MongoDB. Se empleó un enfoque mixto (análisis documental, encuestas a 21 profesores y pruebas de usabilidad) para diagnosticar la situación actual y validar la solución. El prototipo integra generación automática de contratos según normativas, cálculos ajustados a la Resolución 210/2023 del MES y dashboards interactivos en 4K. Los resultados muestran una reducción del 60 % en el tiempo de gestión y eliminación de errores en la liquidación de pagos. La implementación garantiza seguridad mediante TLS 1.3 y control de acceso basado en roles, cumpliendo estándares GDPR. Se confirma la hipótesis de mejora significativa en eficiencia y se recomienda la extensión del sistema a otros departamentos académicos.
+[65][Normal] El presente trabajo se organiza en tres capítulos principales:
+[66][Normal] Capítulo I: Fundamentación Teórica. Se expone el diagnóstico del estado actual, la caracterización de la entidad, el análisis de sistemas afines, la revisión de herramientas y metodologías, así como los resultados del diagnóstico empírico.
+[67][Normal] Capítulo II: Diseño del Sistema. Se describe el modelo de dominio, las reglas de negocio, los requerimientos funcionales y no funcionales, el diagrama de casos de uso, el cálculo del esfuerzo y los costos asociados al desarrollo del sistema.
+[68][Normal] Capítulo III: Descripción de la Solución Propuesta. Incluye el análisis y diseño detallado, los aspectos de seguridad, los diagramas de interacción y clases, el modelo de datos y de despliegue, la implementación, las pruebas realizadas y los resultados obtenidos.
+[69][Normal] Para finalizar, se reflejan las Conclusiones y Recomendaciones obtenidas a partir del análisis realizado.
+[70][Normal] PALABRAS CLAVE: Gestión de contratos, sobrecarga docente, automatización, Flutter Web, seguridad de datos.
+[71][Heading 1] ABSTRACT.
+[73][Normal] In response to the inefficiency of manual contract management and teaching overload payment calculations in the Informatics Department at the University of Pinar del Río, a modular information system was developed using Flutter Web, Node.js, and MongoDB. A mixed-methods approach (document analysis, surveys with 21 professors, and usability testing) was applied for diagnosis and validation. The prototype features automated contract generation compliant with institutional policies, payment calculations aligned with MES Resolution 210/2023, and interactive 4K dashboards. Results indicate a 60 % reduction in processing time and elimination of payment errors. Security is ensured via TLS 1.3 and role-based access control, meeting GDPR standards. The findings support the hypothesis of significant efficiency gains, and the system is recommended for expansion to other academic units.
+[75][Normal] This work is organized into three main chapters:
+[77][List Paragraph] Chapter I: Theoretical Framework. This chapter presents the diagnosis of the current state, the characterization of the entity, the analysis of related systems, the review of tools and methodologies, as well as the results of the empirical diagnosis.
+[78][List Paragraph] Chapter II: System Design. This chapter describes the domain model, business rules, functional and non-functional requirements, the use case diagram, the calculation of effort, and the costs associated with the system development.
+[79][List Paragraph] Chapter III: Description of the Proposed Solution. This chapter includes detailed analysis and design, security aspects, interaction and class diagrams, the data and deployment models, implementation, testing conducted, and the results obtained.
+[81][Normal] Finally, the Conclusions and Recommendations derived from the analysis are presented.
+[83][Normal] KEYWORDS: Contract management, teaching overload payments, automation, Flutter Web, data security.
+[84][Normal] INDICE DE CONTENIDOS.							          Páginas
+[85][toc 1] DECLARACIÓN DE AUTORÍA.	II
+[86][toc 1] Pensamiento o frase.	III
+[87][toc 1] DEDICATORIA. Ing. Yosvany Hernández Quintero	IV
+[88][toc 1] AGRADECIMIENTOS.	V
+[89][toc 1] RESUMEN.	VI
+[90][toc 1] ABSTRACT.	VII
+[91][toc 1] INTRODUCCION.	1
+[92][toc 1] CAPITULO I: FUNDAMENTACION TEORICA.	6
+[93][toc 2] I.1	Diagnóstico del estado actual del objeto de investigación.	6
+[94][toc 2] I.2	Caracterización de la Entidad y Población.	8
+[95][toc 2] I.3	Consecuencias Identificadas:	9
+[96][toc 2] I.4	Valoraciones Generales:	9
+[97][toc 2] I.5	Sistemas informáticos afines.	9
+[98][toc 3] Conclusiones del Estudio de Sistemas Afines	10
+[99][toc 2] I.6	Caracterización de herramientas, metodologías y softwares.	10
+[100][toc 3] 	Metodologías de Desarrollo	10
+[101][toc 3] 1.	RUP® (Rational Unified Process®):	11
+[102][toc 3] 2.	Herramientas de Modelado y Desarrollo	11
+[103][toc 3] 3.	Tecnologías Clave	12
+[104][toc 3] 4.	Integración Tecnológica	14
+[105][toc 3] 	Conclusión de la Caracterización	14
+[106][toc 2] Conclusiones Parciales del Capítulo I	15
+[107][toc 1] CAPITULO II: DISEÑO DEL SISTEMA	16
+[108][toc 2] II.1	Introducción	16
+[109][toc 2] II.2	Modelo del dominio.	16
+[110][toc 3] II.2.1	Definición de las entidades y conceptos principales.	16
+[111][toc 3] II.2.2	Reglas del negocio.	17
+[112][toc 3] II.2.3	Modelación del modelo del dominio.	18
+[113][toc 3] II.2.4	Actores que intervienen en el sistema.	19
+[114][toc 3] II.2.5	Definición de los Requerimientos funcionales.	20
+[115][toc 3] II.2.6	Definición de los Requerimientos no funcionales.	22
+[116][toc 2] II.3	Diagrama de Caso de Uso.	24
+[117][toc 3] II.3.1	Descripción textual de caso de uso.	25
+[118][toc 2] II.4	Cálculo de los Puntos de Casos de Uso (sin ajustar) (PCUs).	28
+[119][toc 3] II.4.1	Factor de Peso de los Casos de Uso sin Ajustar (FPCU).	28
+[120][toc 3] II.4.2	Clasificación de casos de uso (según transacciones):	28
+[121][toc 3] II.4.3	Lista de CU con transacciones estimadas:	29
+[122][toc 3] II.4.4	PCU (sin ajustar)	30
+[123][toc 3] II.4.5	Factor de Complejidad Técnica (FCT), Factor de Ambiente (FA), PCUA	30
+[124][toc 3] II.4.6	Esfuerzo total (ET)	30
+[125][toc 3] II.4.7	Tiempo de Desarrollo (TDES).	31
+[126][toc 3] II.4.8	Costo por hombres horas (CHH). 160 horas/mes.	32
+[127][toc 3] II.4.9	Costo total (CT)	32
+[128][toc 2] Conclusiones Parciales del Capítulo II	33
+[129][toc 1] CAPITULO III: DESCRIPCION DE LA SOLUCION PROPUESTA.	34
+[130][toc 2] III.1	Introducción	34
+[131][toc 2] III.2	Análisis y Diseño.	35
+[132][toc 2] III.3	Diagramas de Interacción. (Secuencia para los CUS principales).	35
+[133][toc 2] III.4	Diagrama de Clases del Diseño.	36
+[134][toc 2] III.5	Modelo de Datos.	37
+[135][toc 2] III.6	Diseño de la Arquitectura. (Patrones de Diseño y de Arquitectura).	38
+[136][toc 2] III.7	Modelo de Despliegue.	41
+[137][toc 2] III.8	Implementación.	43
+[138][toc 3] III.8.1	Sistema de Seguridad.	43
+[139][toc 3] III.8.2	Seguridad de Datos.	45
+[140][toc 3] III.8.3	Tratamiento de errores.	45
+[141][toc 3] III.8.4	Salva de la base de datos.	46
+[142][toc 3] III.8.5	Principios de diseño de las interfaces de usuario.	47
+[143][toc 3] Justificación de los elementos específicos en la tesis	47
+[144][toc 3] III.8.6	Formato de salida de los reportes.	48
+[145][toc 3] III.8.7	Ayuda.	49
+[146][toc 3] III.8.8	Diagrama de Componentes (Por cada CUS de los principales).	49
+[147][toc 2] III.9	Prueba.	55
+[148][toc 2] Conclusiones Parciales del Capítulo III	60
+[149][toc 1] CONCLUSIONES.	61
+[150][toc 1] RECOMENDACIONES.	62
+[152][Normal] INDICE DE TABLAS.								          Páginas
+[153][table of figures] Tabla 1 Análisis FODA	6
+[154][table of figures] Tabla 2 Plantilla para Actor del Negocio.	19
+[155][table of figures] Tabla 3 Plantilla para Caso de Uso del Sistema: Iniciar Sesión.	25
+[156][table of figures] Tabla 4 Plantilla para Caso de Uso del Sistema: Crear Contrato.	27
+[157][table of figures] Tabla 5 Plantilla para Caso de Uso del Sistema: Exportar Lista de Profesores a Excel.	27
+[158][table of figures] Tabla 6 Lista de CU con transacciones estimadas	30
+[159][table of figures] Tabla 7 Resumen Final del Cálculo de los Puntos de Casos de Uso (sin ajustar).	33
+[160][table of figures] Tabla 8 Mecanismos de protección multi-nivel	45
+[161][table of figures] Tabla 9 Plantilla para Caso de Prueba: Iniciar Sesión.	56
+[162][table of figures] Tabla 10 Plantilla para Caso de Prueba: Crear Contrato.	58
+[163][table of figures] Tabla 11 Plantilla para Caso de Prueba: Exportar Lista de Profesores a Excel.	59
+[164][table of figures] Tabla 12 Rendimiento bajo carga de usuarios simultáneos.	69
+[165][table of figures] Tabla 13 Factor de Complejidad Técnica (FCT)	72
+[166][table of figures] Tabla 14 Factores Ambientales (FA)	74
+[167][table of figures] Tabla 15 Plantilla de Informe	78
+[168][table of figures] Tabla 16 Validación Iterativa	81
+[169][table of figures] Tabla 17 Estudio Benchmark: Flutter vs. React	83
+[171][Normal] INDICE DE FIGURAS.								          Páginas
+[172][table of figures] Ilustración 1 Metodología, Tecnologías y Herramientas.	10
+[173][table of figures] Ilustración 2 Diagrama del Modelo de Dominio	18
+[174][table of figures] Ilustración 3 Diagrama de Caso de Uso del Sistema.	24
+[175][table of figures] Ilustración 4 Cálculo generado por Enterprise Architect versión 16.	31
+[176][table of figures] Ilustración 5 Diagrama de Secuencia Caso de Uso Usuario	35
+[177][table of figures] Ilustración 6 Diagrama de Secuencia Caso de Uso Autenticar Todos.	35
+[178][table of figures] Ilustración 7 Diagrama de Clases del Diseño	36
+[179][table of figures] Ilustración 8 Diagrama de Componentes start_services.ps1.	40
+[180][table of figures] Ilustración 9 Diagrama de Modelo de Despliegue de Servidor – BD	41
+[181][table of figures] Ilustración 10 Middleware de la Conexión principal a la BD	43
+[182][table of figures] Ilustración 11 Middleware para manejar errores y rutas no encontradas	44
+[183][table of figures] Ilustración 12 mostrarSnackBar.dart	44
+[184][table of figures] Ilustración 13 Diagrama de Componentes.	49
+[185][table of figures] Ilustración 14 Diagrama de Relaciones de los Módulos	52
+[186][table of figures] Ilustración 15 Diagrama de Relaciones del script start_services.ps1	53
+[187][table of figures] Ilustración 16 Función para monitorear el uso de recursos y mostrar el uso de RAM.	65
+[188][table of figures] Ilustración 17 Dashboard de Distribución de Estados	67
+[189][table of figures] Ilustración 18 Script de creación de la base de datos en MongoDB (archivo db.js).	68
+[190][table of figures] Ilustración 19 Generar clave privada CA – 4096 bits	70
+[191][table of figures] Ilustración 20 Generar clave privada del servidor 4096 bits	70
+[192][table of figures] Ilustración 21 Certificado SSL generado para el servidor HTTPS (archivo cert.pem).	70
+[194][Heading 1] INTRODUCCION.
+[195][Normal] El presente documento tiene como objetivo presentar un sistema informático diseñado para optimizar la gestión de contratos determinados y los pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río. La implementación de este sistema busca mejorar la eficiencia administrativa, reducir errores y facilitar el acceso a la información relevante para la toma de decisiones.
+[196][Normal] Contexto y Antecedentes
+[197][Normal] El Departamento de Informática de la Universidad de Pinar del Río ha enfrentado desafíos significativos en la gestión de contratos y pagos a docentes. La falta de un sistema centralizado ha llevado a la duplicación de esfuerzos, errores en los pagos y dificultades en el seguimiento de los contratos. En este contexto, se hace necesario desarrollar una solución que permita una gestión más ágil y efectiva.
+[198][Normal] Marco Teórico
+[199][Normal] El marco teórico se basa en conceptos de gestión administrativa, sistemas de información y tecnologías de la información. Se revisan teorías sobre la gestión de recursos humanos, la importancia de la automatización en procesos administrativos y el impacto de la tecnología en la eficiencia organizacional.
+[200][Normal] Diseño Teórico
+[201][Normal] El diseño teórico del sistema se fundamenta en una arquitectura modular que permite la integración de diferentes funciones, como la gestión de contratos, el cálculo de pagos y la generación de reportes. Se utilizarán tecnologías de bases de datos para almacenar la información y lenguajes de programación adecuados para el desarrollo de la interfaz de usuario.
+[202][Normal] Situación Problemática
+[203][Normal] En el Departamento de Informática se identifican oportunidades de optimización en la gestión de contratos determinados y pagos por sobrecarga docente. Los procesos actuales, predominantemente manuales, pueden generar desafíos operativos que impactan tanto a los profesores como al equipo administrativo, requiriendo esfuerzos adicionales para garantizar precisión en los resultados.
+[206][Normal] Problema Científico
+[207][Normal] ¿Cuál sería el impacto de implementar un sistema informático en la gestión de contratos determinados y en el procesamiento de pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río?
+[208][Normal] Objeto de Investigación
+[209][Normal] La gestión de contratos determinados y los pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río.
+[210][Normal] Objetivos
+[211][Normal] General: Desarrollar un sistema informático que optimice la gestión de contratos determinados y los pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río, mejorando la eficiencia administrativa y la satisfacción de los usuarios involucrados.
+[212][Normal] Específicos:
+[213][List Paragraph] Analizar el contexto actual:
+[214][List Paragraph] Realizar un diagnóstico del sistema actual de gestión de contratos determinados y pagos, identificando deficiencias y oportunidades de mejora.
+[215][List Paragraph] Definir la metodología y herramientas:
+[216][List Paragraph] Seleccionar una metodología de desarrollo adecuada (RUP®) y las herramientas tecnológicas que se utilizarán para el desarrollo del sistema, incluyendo el lenguaje de programación y las plataformas de base de datos.
+[217][List Paragraph] Modelar el sistema:
+[218][List Paragraph] Diseñar la arquitectura del sistema, incluyendo la interfaz de usuario, los modelos de negocio y los casos de uso que reflejen las interacciones entre los usuarios y el sistema.
+[219][List Paragraph] Desarrollar el sistema informático:
+[220][List Paragraph] Implementar un sistema que integre todas las funciones necesarias para la gestión eficiente de contratos determinados y pagos, asegurando una base de datos local que soporte la operatividad del sistema.
+[221][List Paragraph] Realizar pruebas y validaciones:
+[222][List Paragraph] Diseñar y ejecutar casos de prueba para garantizar el correcto funcionamiento del sistema, así como recoger retroalimentación de los usuarios para realizar ajustes necesarios antes de la implementación final.
+[224][Normal] Campo de Acción
+[226][Normal] El campo de acción del proyecto incluye la administración de contratos, la gestión de pagos, la capacitación del personal y la implementación de tecnologías de la información en el departamento.
+[228][Normal] Hipótesis
+[230][Normal] Se plantea la hipótesis de que la implementación de un sistema informático para la gestión de contratos y pagos mejorará significativamente la eficiencia administrativa y la satisfacción de los docentes en el Departamento de Informática de la Universidad de Pinar del Río.
+[232][Normal] Diseño Metodológico
+[234][Normal] El diseño metodológico se basará en un enfoque mixto que combine métodos cualitativos y cuantitativos. Se realizarán encuestas y entrevistas para recopilar información sobre las necesidades del departamento, seguido de un desarrollo iterativo del sistema con pruebas y ajustes basados en el feedback de los usuarios.
+[236][Normal] Con el fin de alcanzar los objetivos establecidos, se han identificado las siguientes:
+[238][Normal] Tareas de Investigación
+[239][List Paragraph] Revisión de la literatura sobre gestión de contratos y sistemas de información, con el fin de establecer un marco teórico sólido que respalde la investigación.
+[240][List Paragraph] Análisis de los procesos actuales de gestión en el departamento, identificando fortalezas, debilidades y áreas de mejora.
+[241][List Paragraph] Diseño del sistema informático, considerando las necesidades del usuario y los requisitos funcionales y no funcionales del sistema.
+[242][List Paragraph] Desarrollo e implementación del sistema, asegurando que se cumplan los estándares de calidad y se integre adecuadamente en el entorno operativo.
+[243][List Paragraph] Ejecución de pruebas utilizando datos reales en el software para verificar su correcto funcionamiento y validar su eficacia en la gestión de contratos.
+[245][Normal] El proceso de investigación responde a la idea central de desarrollar un sistema informático integral que optimice la gestión de contratos determinados y pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río. Para materializar los objetivos, se emplearon:
+[247][Normal] Métodos de investigación
+[249][Normal] Inductivo-Deductivo: Aplicado en el análisis de requerimientos, diseño modular de la arquitectura (Flutter Web, Node.js, MongoDB) e implementación de funcionalidades críticas como la generación automatizada de contratos y cálculos de pagos bajo Resolución 210/2023 del MES.
+[250][Normal] Histórico-Lógico: Utilizado en la revisión documental de normativas institucionales, procesos manuales existentes y sistemas afines, identificando patrones de ineficiencia y oportunidades de mejora.
+[251][Normal] Modelación: Empleado en el diseño del modelo de dominio (UML), esquema NoSQL de MongoDB y flujos de seguridad (TLS 1.3, RBAC), garantizando coherencia entre la solución técnica y las necesidades operativas.
+[252][Normal] Entre los métodos empíricos destacan:
+[254][Normal] Entrevistas estructuradas: Realizadas a 21 profesores y 15 administrativos para validar pain points en la gestión manual, como errores recurrentes en liquidaciones (62% según encuestas) y demoras en ciclos de aprobación.
+[255][Normal] Revisión bibliográfica crítica: De 45 fuentes (2018-2023) sobre tecnologías (Flutter, OpenSSL), metodologías (RUP®) y estándares de seguridad (GDPR), fundamentando la selección de herramientas.
+[257][Normal] Resultados esperados:
+[259][Normal] Se implementará un Sistema Informático que contribuirá al proceso de gestión de la información asociada a la Gestión de Contratos Determinados y en el procesamiento de Pagos por Sobrecarga Docente en el Departamento de Informática de la Universidad de Pinar del Río.
+[261][Normal] Conclusión de la Introducción:
+[262][Normal] Este sistema no solo resuelve una problemática local, sino que sienta un precedente para la gestión académica en Cuba, combinando innovación tecnológica con un enfoque centrado en el usuario. Los resultados preliminares (2023-2024) validan que la automatización, respaldada por una sólida base metodológica, puede transformar realidades institucionales complejas.
+[264][Heading 1] CAPITULO I: FUNDAMENTACION TEORICA.
+[266][Normal] Este capítulo establece los pilares teóricos y contextuales que justifican el desarrollo del sistema informático propuesto. A través, de un diagnóstico riguroso del estado actual, un análisis crítico de sistemas afines y la selección fundamentada de herramientas tecnológicas, se busca:
+[268][List Paragraph] Demostrar las limitaciones de los procesos manuales en la gestión de contratos y pagos docentes.
+[269][List Paragraph] Validar la necesidad de una solución personalizada frente a opciones existentes.
+[270][List Paragraph] Definir el marco tecnológico-metodológico que garantice la eficacia, seguridad y escalabilidad del sistema.
+[271][List Paragraph] Se incorporó un análisis FODA (Fortalezas, Oportunidades, Debilidades, Amenazas) del proceso manual, destacando:
+[272][Caption] Tabla 1 Análisis FODA
+[274][Normal] "El 62% de profesores reporta errores recurrentes en pagos (Encuesta 2025, Anexo I)".
+[276][Estilo2] Diagnóstico del estado actual del objeto de investigación.
+[277][Normal] El Departamento de Informática de la Universidad de Pinar del Río "Hermanos Saíz Montes de Oca" tiene como propósito fundamental formar profesionales en Tecnologías de la Información y Comunicaciones (TIC) con sólidos principios éticos y competencias técnicas, capaces de diseñar e implementar soluciones tecnológicas innovadoras para el desarrollo socioeconómico de la región occidental de Cuba. Esta unidad académica, integrada en la Facultad de Ciencias Técnicas, gestiona programas de grado y posgrado en informática, coordina proyectos de investigación aplicada y establece alianzas con entidades productivas locales.
+[279][Normal] Su objeto social se concreta en:
+[280][Normal] Formar ingenieros informáticos e investigadores de alto nivel con capacidad para resolver problemas reales mediante el desarrollo de software, inteligencia artificial y sistemas automatizados.
+[281][Normal] Generar y transferir conocimientos tecnológicos que contribuyan a la informatización de sectores estratégicos (agropecuario, salud, educación y gobierno) en la provincia de Pinar del Río.
+[282][Normal] Ofrecer servicios especializados de consultoría y desarrollo tecnológico para optimizar procesos productivos y la toma de decisiones en entidades estatales y empresas locales.
+[283][Normal] Promover la innovación tecnológica mediante investigación aplicada en redes, computación y sistemas inteligentes, alineada con los planes de desarrollo nacional.
+[285][Normal] Tiene como misión:
+[286][Normal] Contribuir al desarrollo científico, económico, político y social de la provincia de Pinar del Río y de Cuba, mediante la formación integral de profesionales en Informática, así como su superación postgraduada, que permitan el avance de la ciencia y las tecnologías en correspondencia con las necesidades y expectativas de la sociedad.
+[288][Normal] Tiene como visión:
+[289][Normal] Consolidarse como referente nacional en excelencia educativa e innovación tecnológica para 2030, reconocido por su impacto en la solución de problemáticas locales mediante investigación aplicada, formación de talento altamente calificado y sinergias con el sector socio-productivo, contribuyendo al avance de la sociedad digital cubana.
+[291][Normal] Actualmente, la gestión de proyectos de investigación y vinculación laboral del departamento se realiza mediante registros manuales y hojas de cálculo desestructuradas, lo que genera duplicidad de información, dificultad para monitorear avances y pérdida de oportunidades de colaboración. Esta atomización de datos en formatos no interoperables limita el análisis del impacto real de las soluciones tecnológicas desarrolladas, obstaculiza la evaluación del desempeño docente-investigativo y ralentiza la respuesta a demandas del territorio, afectando el cumplimiento estratégico de su encargo social.
+[293][Normal] Objetivo Parcial: Caracterizar las limitaciones operativas y tecnológicas en la gestión de contratos y pagos por sobrecarga docente del Departamento de Informática de la UPR, evidenciando la necesidad de una solución informática.
+[295][Estilo2] Caracterización de la Entidad y Población.
+[296][Normal] El Departamento de Informática de la UPR gestiona anualmente 10 contratos determinado y 21 casos de pagos por sobrecarga docente, involucrando a:
+[297][Normal] 30 administrativos (gestores de contratos, financieros, directivos).
+[298][Normal] 120 profesores (21 con carga docente excedente).
+[300][Normal] Proceso Actual:
+[301][Normal] Oportunidades en precisión: Aproximadamente el 15% de los pagos requieren ajustes posteriores.
+[302][Normal] Optimización de tiempos: Los ciclos de gestión muestran un promedio de 20 días.
+[303][Normal] Refuerzo en protección de datos: Se observan áreas para fortalecer el manejo de información sensible.
+[305][Estilo2] Consecuencias Identificadas:
+[306][ds-markdown-paragraph] Hallazgos que justifican la optimización:
+[307][ds-markdown-paragraph] Recálculos en liquidaciones que afectan la eficiencia operativa
+[308][ds-markdown-paragraph] Plazos extensos en ciclos de pago
+[309][ds-markdown-paragraph] Oportunidades para consolidar flujos documentales
+[311][Estilo2] Valoraciones Generales:
+[312][Normal] Los resultados evidencian que el problema científico (ineficiencia en la gestión) no solo existe, sino que impacta en la productividad institucional y el bienestar laboral. La transformación mediante un sistema informático es urgente y viable.
+[314][Estilo2] Sistemas informáticos afines.
+[315][Normal] Objetivo Parcial: Analizar soluciones tecnológicas existentes para determinar su aplicabilidad al contexto específico del Departamento de Informática de la UPR.
+[316][Normal] Software Analizados
+[320][Heading 3] Conclusiones del Estudio de Sistemas Afines
+[321][List Paragraph] Ninguna solución cumple con los requisitos críticos del Departamento:
+[322][List Paragraph] Hiperlocalización: Adaptación a normativas cubanas y restricciones tecnológicas (ejemplo: baja conectividad).
+[323][List Paragraph] Costo cero en licencias: Uso exclusivo de tecnologías open-source.
+[324][List Paragraph] Autonomía técnica: Mantenimiento por personal interno sin dependencia externa.
+[325][Normal] Decisión Justificada:
+[326][List Paragraph] Desarrollar un sistema ad-hoc es la única opción viable, dado que las alternativas existentes:
+[327][List Paragraph] No resuelven el 60% de las necesidades identificadas en el diagnóstico.
+[328][List Paragraph] Implicarían inversiones incompatibles con el presupuesto institucional.
+[330][Estilo2] Caracterización de herramientas, metodologías y softwares.
+[331][Normal] Objetivo Parcial: Fundamentar la selección de tecnologías, metodologías y herramientas para garantizar un desarrollo robusto, seguro y alineado con los requisitos operativos del Departamento de Informática de la UPR.
+[332][Heading 3] Metodologías de Desarrollo
+[334][Caption] Ilustración 1 Metodología, Tecnologías y Herramientas.
+[335][Heading 3] RUP® (Rational Unified Process®):
+[337][Normal] Ventajas:
+[338][Normal] Enfoque iterativo: Permite validar funcionalidades críticas (ejemplo: generación de contratos) en fases tempranas, incorporando retroalimentación de usuarios reales.
+[339][Normal] Documentación estructurada: Integración con UML™ para modelar procesos como la firma digital de contratos y flujos de aprobación.
+[341][Normal] Aplicación en el sistema:
+[342][Normal] Fase de Elaboración dedicada al diseño de Dashboard interactivos en 4K para profesores, usando diagramas de secuencia UML™.
+[344][Normal] Aplicación en el sistema:
+[345][Normal] Sprints quincenales enfocados en módulos prioritarios (ejemplo: cálculo automatizado de pagos por sobrecarga docente).
+[347][Heading 3] Herramientas de Modelado y Desarrollo
+[348][Normal] Enterprise Architect v16:
+[349][Normal] Ventajas:
+[350][Normal] Precisión en modelado: Creación de diagramas de clases para la base de datos no relacional (MongoDB), garantizando consistencia en contratos con cláusulas variables.
+[351][Normal] Aplicación en el sistema:
+[352][Normal] Diseño de la arquitectura de seguridad TLS 1.3 mediante diagramas de despliegue.
+[353][Normal] Visual Studio Code:
+[354][Normal] Ventajas:
+[355][Normal] Ecosistema integrado: Extensiones como Flutter Data Class Generator para acelerar la codificación de formularios de contratos.
+[356][Normal] Aplicación en el sistema:
+[357][Normal] Depuración en tiempo real de APIs RESTful (Node.js) para pagos y gestión documental.
+[359][Heading 3] Tecnologías Clave
+[361][Normal] Frontend:
+[363][Normal] Framework Flutter 3.19 (Web):
+[364][Normal] Ventajas:
+[365][Normal] Renderizado offline: Permite a profesores revisar contratos sin conexión en zonas rurales de Pinar del Río.
+[366][Normal] Gráficos 4K: Uso de fl_chart para visualizar horas acumuladas por semestre en Dashboard táctiles.
+[367][Normal] Aplicación en el sistema:
+[368][Normal] Interfaz adaptativa para dispositivos móviles (70% de acceso desde smartphones).
+[370][Normal] Backend:
+[372][Normal] Node.js 20.9 + Express 5.1:
+[373][Normal] Ventajas:
+[374][Normal] Escalabilidad horizontal: Soporta hasta 50 contratos simultáneos en períodos de alta demanda (ejemplo: inicio de semestre).
+[375][Normal] Aplicación en el sistema:
+[376][Normal] API REST para exportar pagos a Excel con formato predefinido por la contabilidad universitaria.
+[378][Normal] Base de Datos:
+[380][Normal] MongoDB 8.0:
+[381][Normal] Ventajas:
+[382][Normal] Esquemas dinámicos: Almacenamiento de contratos con estructuras variables (ejemplo: cláusulas específicas para profesores invitados).
+[383][Normal] Aplicación en el sistema:
+[384][Normal] Réplica automática en la nube universitaria para redundancia ante cortes eléctricos.
+[385][Normal] Seguridad:
+[387][Normal] OpenSSL 3.2 + TLS 1.3 (Cryptography and SSL/TLS Toolkit):
+[388][Normal] Ventajas:
+[389][Normal] Cifrado TLS 1.3: Reduce latencia en un 40% vs. TLS 1.2, crítico para entornos con conectividad intermitente.
+[390][Normal] Aplicación en el sistema:
+[391][Caption] Generación de certificados auto firmados de Módulo (4096 bits) (ver Ilustraciones 18, 19) para acceso seguro al Dashboard administrativo.
+[392][Normal] Automatización:
+[394][Normal] PowerShell (Script start_services.ps1):
+[395][Normal] Ventajas:
+[396][Normal] Gestión de recursos: Limita el uso de RAM de navegadores (Chrome/Edge) para evitar colapsos en equipos con 4 GB de memoria.
+[397][Normal] GUI personalizada: Interfaz gráfica para configurar rutas de logs y navegadores, accesible para personal no técnico.
+[398][Normal] Aplicación en el sistema:
+[399][Normal] Automatización de tareas críticas:
+[400][Normal] Inicio seguro de servicios: Verificación de puertos ocupados (ejemplo: 3000, 8000) y liberación automática.
+[401][Normal] Generación de certificados SSL: Scripts integrados con OpenSSL para Generando nuevos certificados, en caso de no estar creados, como son: "ca-cert.pem", "ca-key.pem", "cert.pem", "key.pem", "server.csr".
+[402][Normal] Monitorización en tiempo real: Control de consumo de RAM y cierre preventivo de pestañas excedentes.
+[403][Normal] Python:
+[404][Normal] Ventajas:
+[405][Normal] Migración de datos: Transformación de 50 contratos históricos desde Excel a JSON mediante Pandas.
+[407][Normal] Aplicación en el sistema:
+[408][Normal] Servidor HTTPS personalizado (https_server.py) para hospedar la aplicación Flutter Web con autenticación TLS.
+[410][Heading 3] Integración Tecnológica
+[411][Normal] El sistema opera como un ecosistema cohesionado:
+[412][Normal] Flutter Web consume datos de Node.js, que interactúa con MongoDB para gestionar contratos.
+[413][Normal] PowerShell automatiza el despliegue: inicia MongoDB, servidores Node.js/Flutter, y navegadores con parámetros optimizados (ejemplo: --disable-extensions para reducir carga de RAM).
+[414][Normal] OpenSSL asegura comunicaciones entre el frontend y el servidor Python, mientras los Dashboard en 4K se actualizan al cambiar los datos.
+[416][Heading 3] Conclusión de la Caracterización
+[417][Normal] La selección tecnológica responde a hallazgos clave del diagnóstico:
+[418][Normal] Flutter + PowerShell: Solucionan la brecha entre usabilidad offline y automatización en entornos con recursos limitados.
+[419][Normal] MongoDB + Node.js: Garantizan flexibilidad ante cambios normativos frecuentes en contratos docentes.
+[420][Normal] OpenSSL + GUI de PowerShell: Mitigan riesgos de seguridad identificados (ejemplo: envío accidental de datos sensibles).
+[422][Normal] Este marco no solo moderniza procesos, sino que establece un estándar replicable para otras universidades cubanas, demostrando que:
+[424][Normal] Innovación Técnica:
+[425][Normal] Uso pionero de Flutter Web en gestión académica cubana, adaptado a baja conectividad.
+[426][Normal] Integración de tecnologías modernas: Node.js, MongoDB, TLS 1.3, y PowerShell para automatización.
+[427][Normal] Dashboards interactivos en resolución 4K con visualización de datos en tiempo real.
+[429][Normal] Caracterización tecnológica:
+[431][List Paragraph] Se amplió la sección de PowerShell (script start_services.ps1), detallando funciones clave:
+[432][List Paragraph] Monitoreo en tiempo real de RAM.
+[433][List Paragraph] Generación automática de certificados TLS.
+[434][List Paragraph] Gestión de servicios (MongoDB, Node.js, Flutter).
+[435][List Paragraph] Se incluyó Diagrama de Relaciones del script start_services.ps1 (Ver Ilustración 12).
+[437][Estilo2] Conclusiones Parciales del Capítulo I
+[439][Normal] El análisis teórico y el diagnóstico realizado evidencian que la gestión manual de contratos y pagos por sobrecarga docente en el Departamento de Informática presenta ineficiencias significativas, tales como duplicidad de esfuerzos, errores frecuentes y dificultades en el acceso a la información. La revisión de sistemas afines y herramientas existentes permitió identificar buenas prácticas y requisitos clave para el desarrollo de una solución informática adecuada a las necesidades institucionales. Estos resultados justifican la necesidad de diseñar un sistema informático que responda a estas problemáticas.
+[440][Heading 1] CAPITULO II: DISEÑO DEL SISTEMA
+[442][Estilo3] Introducción
+[443][Normal] Este capítulo presenta el diseño técnico del sistema informático desarrollado para gestionar contratos determinados y pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río. El diseño incluye el modelo del dominio, que define las entidades principales y sus relaciones, las reglas de negocio que rigen el sistema, los actores involucrados y los requisitos funcionales y no funcionales. Este capítulo proporciona la base para la implementación técnica del sistema, asegurando que cumpla con las necesidades del departamento.
+[445][Estilo3] Modelo del dominio.
+[446][Normal] El modelo del dominio es una representación estructurada de los conceptos, entidades y relaciones clave dentro del sistema de gestión de contratos determinados y pagos por sobrecarga docente. Este modelo sirve como base para comprender el problema del negocio y diseñar una solución que sea mantenible, testable y escalable. A través de la identificación de entidades principales, sus atributos y las reglas que rigen sus interacciones, el modelo del dominio proporciona una visión clara de cómo el sistema debe operar para cumplir con los requisitos del Departamento de Informática de la Universidad de Pinar del Río.
+[448][Heading 3] Definición de las entidades y conceptos principales.
+[449][Normal] A continuación, se presentan las entidades principales del sistema y los conceptos clave que rigen su funcionamiento:
+[452][Normal] Conceptos clave:
+[453][Normal] Sobrecarga docente: Horas adicionales de enseñanza que un profesor realiza más allá de su carga regular.
+[454][Normal] Contrato determinado: Acuerdo temporal entre el departamento y un profesor para realizar actividades específicas.
+[456][Heading 3] Reglas del negocio.
+[457][Normal] Las siguientes reglas de negocio rigen el funcionamiento del sistema:
+[458][Normal] Solo usuarios autenticados pueden acceder al sistema.
+[459][Normal] Solo los administradores pueden crear, aprobar o modificar usuarios.
+[460][Normal] Los contratos deben ser aprobados antes de ser activados.
+[461][Normal] Los pagos solo pueden realizarse para contratos activos y completados.
+[462][Normal] Los Pagos por sobrecarga docente se calcula basándose en la carga actual del profesor y las horas adicionales asignadas.
+[463][Normal] Los contratos no pueden exceder una duración de 12 meses.
+[464][Normal] Los pagos deben procesarse dentro de los 30 días posteriores a la finalización del contrato.
+[465][Normal] Cada contrato debe incluir un registro de cláusulas variables, si aplica.
+[467][Heading 3] Modelación del modelo del dominio.
+[469][Caption] Ilustración 2 Diagrama del Modelo de Dominio
+[471][Normal] El modelo de dominio establece las relaciones entre las entidades centrales del sistema. Los Administradores gestionan Contratos que formalizan acuerdos con Profesores. Cada contrato puede generar múltiples registros de los Pagos por Sobrecarga docente, vinculados a pagos adicionales. Las reglas de negocio (ejemplo: contratos ≤12 meses, pagos en ≤30 días) se aplican como restricciones en estas relaciones.
+[472][Heading 3] Actores que intervienen en el sistema.
+[473][Caption] Tabla 2 Plantilla para Actor del Negocio.
+[474][Heading 3] Definición de los Requerimientos funcionales.
+[475][List Paragraph] Iniciar Sesión. Permitir a los usuarios (Administrador, Profesor, Empleado, Usuario) acceder al sistema mediante autenticación con nombre de usuario y contraseña.
+[476][List Paragraph] Cerrar Sesión. Permitir a los usuarios finalizar su sesión activa en el sistema de manera segura, protegiendo la integridad de la información.
+[477][List Paragraph] Modificar Contraseña. Permitir a los usuarios cambiar su contraseña actual, validando que cumpla con políticas de seguridad (mínimo 8 caracteres, combinación de letras, números y símbolos).
+[478][List Paragraph] Gestionar Usuario. Permitir al Administrador gestionar cuentas de usuarios (crear, aprobar, editar, eliminar).
+[479][List Paragraph] Crear Usuario: Registrar nuevos usuarios en el sistema, asignando roles (Administrador al inicio, cuando no haya usuarios creados, Profesor, Empleado).
+[480][List Paragraph] Aprobar Usuario: Validar solicitudes de registro pendientes para habilitar el acceso al sistema.
+[481][List Paragraph] Modificar Usuario: Modificar datos de usuarios existentes (ejemplo: correo, rol, permisos).
+[482][List Paragraph] Eliminar Usuario: Eliminar cuentas de usuarios inactivos o no autorizados.
+[483][List Paragraph] Configurar Sistema: Definir parámetros generales del sistema.
+[484][List Paragraph] Gestión de Contratos. Permitir al Empleado administrar contratos dentro del sistema.
+[485][List Paragraph] Crear Contratos: Registrar nuevos contratos con datos como fecha, vigencia y partes involucradas.
+[486][List Paragraph] Actualizar Contratos: Modificar información de contratos existentes (ejemplo: direcciones, teléfonos).
+[487][List Paragraph] Eliminar Contratos: Eliminar contratos obsoletos o cancelados.
+[488][List Paragraph] Exportar Contrato a PDF: Exportar UN contrato a formato PDF.
+[489][List Paragraph] Exportar TODOS los Contratos a PDF: Generar un archivo PDF individual para cada contrato.
+[490][List Paragraph] Gestión de Profesores. Permitir al Profesor gestionar la información de otros educadores dentro del sistema.
+[491][List Paragraph] Agregar Profesores: Registrar nuevos profesores con datos personales y académicos.
+[492][List Paragraph] Editar Profesores: Modificar información de profesores existentes (ejemplo: especialización, contacto).
+[493][List Paragraph] Eliminar Profesores: Eliminar registros de profesores que ya no colaboran con la institución.
+[494][List Paragraph] Exportar Lista de Profesores a Excel: Generar un archivo Excel con la lista completa de profesores.
+[495][List Paragraph] Dashboard Interactivo. Proporcionar un panel de control personalizado según el rol del usuario.
+[496][List Paragraph] Soporte Técnico. Permitir a los usuarios acceder a la información de contacto del soporte técnico para resolver dudas o inconvenientes.
+[497][List Paragraph] Recuperar Contraseña: Permitir restablecer contraseña vía correo electrónico.
+[498][List Paragraph] Contactar Soporte: Acceder a información de contacto (teléfono, correo) del equipo técnico.
+[499][Heading 3] Definición de los Requerimientos no funcionales.
+[500][List Paragraph] Interfaz o apariencia externa:
+[501][ds-markdown-paragraph] Diseño Responsivo: La interfaz debe adaptarse a diferentes dispositivos (PC, tabletas, móviles).
+[502][ds-markdown-paragraph] Estética Profesional: Uso de colores institucionales, tipografía legible y diseño minimalista.
+[503][ds-markdown-paragraph] Consistencia Visual: Mantener un mismo estilo en botones, formularios, menús y alertas.
+[504][ds-markdown-paragraph] Accesibilidad: Cumplir con estándares WCAG 2.1 para usuarios con discapacidades (contraste adecuado, texto alternativo en imágenes).
+[506][List Paragraph] Usabilidad:
+[507][ds-markdown-paragraph] Intuitividad: Los usuarios deben realizar tareas clave (iniciar sesión, gestionar contratos) en menos de 3 pasos.
+[508][ds-markdown-paragraph] Curva de Aprendizaje: Máximo 30 minutos para que un nuevo usuario comprenda las funciones básicas.
+[509][ds-markdown-paragraph] Retroalimentación Visual: Mensajes claros para acciones exitosas (ejemplo: "Contraseña cambiada correctamente") o errores (ejemplo: "Usuario no encontrado").
+[510][ds-markdown-paragraph] Documentación: Manual de usuario en formato digital (PDF o web) con capturas de pantalla.
+[512][List Paragraph] Rendimiento:
+[513][ds-markdown-paragraph] Tiempo de respuesta: ≤2 segundos en autenticación (ver pruebas Anexo E).
+[514][ds-markdown-paragraph] Carga de datos: ≤ 3 segundos para 500 registros.
+[515][ds-markdown-paragraph] Soporte para 50 usuarios concurrentes: Validado con pruebas de estrés usando JMeter (Anexo E).
+[516][ds-markdown-paragraph] Optimización: Uso de caché para datos estáticos (ejemplo: imágenes, CSS) y paginación en consultas largas.
+[519][List Paragraph] Seguridad:
+[520][ds-markdown-paragraph] Autenticación:
+[521][ds-markdown-paragraph] Contraseñas almacenadas con hash (bcrypt o similar).
+[522][ds-markdown-paragraph] Bloqueo tras 5 intentos fallidos de inicio de sesión.
+[523][ds-markdown-paragraph] Autorización: Control de acceso basado en roles (ejemplo: solo Administradores pueden eliminar usuarios).
+[524][ds-markdown-paragraph] Protección de Datos:
+[525][ds-markdown-paragraph] Cifrado TLS 1.3 (evidenciado en certificados Anexo F).
+[526][ds-markdown-paragraph] Cumplimiento de GDPR/LOPD para manejo de información personal.
+[527][ds-markdown-paragraph] Auditoría: Registro de logs para acciones críticas (ejemplo: eliminación de contratos, cambios de roles).
+[529][List Paragraph] Fiabilidad:
+[530][ds-markdown-paragraph] Disponibilidad: 99.5% uptime (excluyendo mantenimiento programado).
+[531][ds-markdown-paragraph] Tolerancia a Fallos:
+[532][ds-markdown-paragraph] Backup automático diario de la base de datos.
+[533][ds-markdown-paragraph] Recuperación ante caídas en ≤ 1 hora.
+[534][ds-markdown-paragraph] Validación de Datos: Evitar entradas incorrectas (ejemplo: campos de fecha con calendario interactivo, validación de correos electrónicos).
+[535][ds-markdown-paragraph] Pruebas:
+[536][ds-markdown-paragraph] Unitarias (cobertura ≥ 80%).
+[537][ds-markdown-paragraph] Estrés (simular 100 usuarios concurrentes).
+[538][Estilo3] Diagrama de Caso de Uso.
+[539][Caption] Los diagramas de casos de uso son como mapas visuales que nos ayudan a entender cómo los usuarios interactúan con un sistema específico. Aunque al principio se usaban principalmente en el mundo de la programación de software, hoy en día su uso se ha extendido a muchas otras áreas, como el comercio minorista y la atención al cliente. Estos diagramas son herramientas valiosas que nos permiten ver de manera clara y sencilla cómo los consumidores se relacionan con una empresa (Sommerville, 2021).
+[540][Caption] A continuación, te mostramos el diagrama de casos de uso que hemos creado para este sistema:
+[542][Caption] Ilustración 3 Diagrama de Caso de Uso del Sistema.
+[544][Heading 3] Descripción textual de caso de uso.
+[545][Caption] Tabla 3 Plantilla para Caso de Uso del Sistema: Iniciar Sesión.
+[547][Caption] Tabla 4 Plantilla para Caso de Uso del Sistema: Crear Contrato.
+[549][Caption] Tabla 5 Plantilla para Caso de Uso del Sistema: Exportar Lista de Profesores a Excel.
+[550][Estilo3] Cálculo de los Puntos de Casos de Uso (sin ajustar) (PCUs).
+[551][Normal] Los PCUs sin ajustar representan la estimación inicial del esfuerzo de desarrollo, basada en la metodología de Gustav Karner (1993). Este método cuantifica la complejidad del sistema mediante dos componentes clave:
+[552][Normal] Factor de Peso de Actores (FPA): Clasifica a los actores según su interacción con el sistema.
+[553][Normal] Factor de Peso de Casos de Uso (FPCU): Clasifica los casos de uso según el número de transacciones.
+[554][Heading 3] Factor de Peso de los Casos de Uso sin Ajustar (FPCU).
+[555][Normal] Todos los Actores interactúan con GUI → Complejos (Factor = 3)
+[557][Normal] Fórmula:
+[559][Normal] Despeje:
+[562][Heading 3] Clasificación de casos de uso (según transacciones):
+[563][Normal] Los casos de uso se clasifican en tres categorías según las transacciones realizadas:
+[570][Heading 3] Lista de CU con transacciones estimadas:
+[571][Caption] Tabla 6 Lista de CU con transacciones estimadas
+[572][Normal] Cálculo:
+[574][Heading 3] PCU (sin ajustar)
+[576][Heading 3] Factor de Complejidad Técnica (FCT), Factor de Ambiente (FA), PCUA
+[577][Normal] PCUA (Puntos de Casos de Uso Ajustados). Ver Anexo G: Factores Técnicos y Ambientales
+[578][List Paragraph] Factor de Complejidad Técnica (FCT):
+[579][Normal] 13 factores técnicos (ejemplo: seguridad, integración, rendimiento).
+[582][List Paragraph] Factor de Ambiente (FA):
+[583][Normal] 8 factores ambientales:
+[586][List Paragraph] PCUA:
+[588][Heading 3] Esfuerzo total (ET)
+[589][Normal] Convierte los Puntos de Casos de Uso Ajustados (PCUA) en horas-hombre, considerando un factor de conversión (15 H/H por PCUA). Incluye etapas adicionales (análisis, diseño, pruebas) ajustando el esfuerzo total al dividir por el 40% asignado a implementación.
+[590][List Paragraph] Esfuerzo Estimado (EEHH):
+[591][Normal] Factor de conversión (FC): 15 H/H por PCUA.
+[593][Normal] Ilustración  Cálculo generado por Enterprise Architect versión 16.
+[594][List Paragraph] Esfuerzo Total (ET):
+[595][Normal] Distribución de etapas:
+[596][Normal] Implementación (40%), Análisis (20%), Diseño (20%), Pruebas (15%), Otros (5%).
+[598][Heading 3] Tiempo de Desarrollo (TDES).
+[599][Normal] Calcula la duración del proyecto dividiendo el esfuerzo total entre el número de desarrolladores. Para una tesis con 1 persona, resulta en = 426.5625, ≈ 427 días laborales (8h/día), pero:
+[602][Normal] Cantidad de personas (CH): 2.
+[608][Heading 3] Costo por hombres horas (CHH). 160 horas/mes.
+[609][Normal] Basado en (8h/día x 4 semanas x 5 días)
+[610][Normal] Salario Promedio (SP):
+[612][Normal] Coeficiente de costos indirectos (K): 1.44.
+[615][Heading 3] Costo total (CT)
+[618][Normal] Aporte a la tesis:
+[619][Normal] Este modelo de estimación:
+[620][Normal] Estandariza la planificación: Utiliza metodologías reconocidas (UCP de Karner) para garantizar transparencia.
+[621][Normal] Optimiza recursos: Permite ajustar plazos aumentando el equipo sin incrementar costos.
+[622][Normal] Valida viabilidad: Demuestra que el proyecto puede completarse en un poco más de 7 meses con un equipo de 2 personas y un presupuesto de $ 30,712.50.
+[624][Normal] Tabla Resumen Final
+[625][Caption] Tabla 7 Resumen Final del Cálculo de los Puntos de Casos de Uso (sin ajustar).
+[626][Estilo3] Conclusiones Parciales del Capítulo II
+[627][Normal] El diseño del sistema propuesto responde a los requerimientos identificados en el diagnóstico inicial, integrando funcionalidades específicas para la gestión de contratos y pagos, así como mecanismos de seguridad y control de acceso. La modelación del dominio, la definición de actores y casos de uso, y la estimación de esfuerzo y costos, garantizan la viabilidad técnica y económica de la solución desarrollada. Con este diseño, se establecen las bases para una implementación eficiente y segura del sistema propuesto.
+[628][Heading 1] CAPITULO III: DESCRIPCION DE LA SOLUCION PROPUESTA.
+[630][Estilo5] Introducción
+[631][HTML Preformatted] El presente capítulo expone la materialización técnica de la solución informática diseñada para transformar la gestión de contratos y pagos por sobrecarga docente en el Departamento de Informática de la Universidad de Pinar del Río. Fundamentado en los requerimientos establecidos en el Capítulo II y validado mediante la metodología RUP®, el sistema implementa un ecosistema tecnológico integrado que combina:
+[633][HTML Preformatted] 1. Frontend en Flutter Web para interfaces responsivas y offline-first,
+[634][HTML Preformatted] 2. Backend en Node.js con arquitectura RESTful,
+[635][HTML Preformatted] 3. Base de datos NoSQL en MongoDB para flexibilidad en esquemas contractuales, y
+[636][HTML Preformatted] 4. Mecanismos de seguridad con TLS 1.3 y RBAC (Control de Acceso Basado en
+[637][HTML Preformatted] Roles).
+[639][HTML Preformatted] La solución no solo automatiza procesos críticos (generación de contratos, pago de sobrecarga, reportes auditoría), sino que introduce innovaciones técnicas como:
+[641][HTML Preformatted] Dashboards en 4K para visualización de datos operativos,
+[642][HTML Preformatted] Scripts de automatización en PowerShell para gestión de recursos,
+[643][HTML Preformatted] Validación teórica:
+[644][HTML Preformatted] Los 5 especialistas cumplieron rigurosos criterios:
+[645][HTML Preformatted] Graduados en Ingeniería Informática (100%)
+[646][HTML Preformatted] >3 años de experiencia en desarrollo de software (100%)
+[647][HTML Preformatted] Dominio comprobado de metodologías ágiles (80%)
+[648][HTML Preformatted] Vinculación al sector educativo cubano (60%)
+[649][HTML Preformatted] Este capítulo detalla el análisis, diseño e implementación que garantizan el cumplimiento de los objetivos de eficiencia (95% reducción de errores), seguridad (OWASP Top 10) y adaptabilidad al contexto cubano (baja conectividad, normativas MES-Cuba).
+[650][Estilo5] Análisis y Diseño.
+[651][Estilo5] Diagramas de Interacción. (Secuencia para los CUS principales).
+[653][Caption] Ilustración 5 Diagrama de Secuencia Caso de Uso Usuario
+[656][Caption] Ilustración 6 Diagrama de Secuencia Caso de Uso Autenticar Todos.
+[657][Estilo5] Diagrama de Clases del Diseño.
+[659][Caption] Ilustración 7 Diagrama de Clases del Diseño
+[660][Normal] El diagrama de clases implementa el modelo de dominio mediante:
+[661][Normal] Usuario (clase abstracta) con herencia a roles específicos.
+[662][Normal] ContratoService para lógica de negocios (validación Resolución 210/2023).
+[663][Normal] Seguridad con patrones de diseño Singleton para cifrado TLS 1.3.
+[664][Normal] Inyección de dependencias en controladores (MongoDB, ExcelExporter).
+[666][Estilo5] Modelo de Datos.
+[667][Normal] Se documentó esquema NoSQL de MongoDB (colecciones: Usuarios, Contratos, Pagos)
+[669][Estilo5] Diseño de la Arquitectura. (Patrones de Diseño y de Arquitectura).
+[671][Normal] 1. Arquitectura Modular por Capas
+[672][Normal] El sistema sigue una arquitectura en capas que separa responsabilidades clave:
+[673][Normal] Capa de Presentación: Implementada mediante una interfaz gráfica (GUI) en Windows Forms, que incluye pestañas para gestión de servicios, registros en tiempo real y configuración. Utiliza el patrón Model-View-Controller (MVC) para desacoplar la lógica de negocio de la interfaz.
+[674][Normal] Capa de Servicios: Gestiona procesos críticos como MongoDB, servidores Node.js/Python y navegadores, aplicando el patrón Singleton para garantizar una única instancia de servicios esenciales (ejemplo: MongoDB).
+[675][Normal] Capa de Acceso a Datos: Interactúa con bases de datos (MongoDB) y almacenamiento local mediante operaciones CRUD, siguiendo el patrón Repository para abstraer la lógica de acceso a datos.
+[677][Normal] 2. Patrones de Diseño Clave
+[678][Normal] a. Observer
+[679][Normal] Uso: Monitoreo en tiempo real de recursos (RAM, pestañas de navegadores) mediante temporizadores (System.Timers.Timer) y eventos suscritos.
+[680][Normal] Beneficio: Permite actualizaciones dinámicas de la GUI sin bloqueos, notificando cambios en el estado del sistema (ejemplo: uso de RAM supera el umbral).
+[681][Normal] b. Factory Method
+[682][Normal] Uso: Creación de procesos de navegadores (Chrome/Edge) con argumentos personalizados en Start-Browsers, encapsulando la lógica de inicialización.
+[683][Normal] Beneficio: Centraliza la creación de instancias, facilitando la extensión a otros navegadores en el futuro.
+[684][Normal] c. Strategy
+[685][Normal] Uso: En la función Invoke-FlutterBuild, donde se seleccionan estrategias de construcción (ejemplo: --pwa-strategy=offline-first) según parámetros configurables.
+[686][Normal] Beneficio: Flexibilidad para adaptar el proceso de despliegue a diferentes entornos (desarrollo, producción).
+[687][Normal] d. Decorator
+[688][Normal] Uso: Encriptación SSL/TLS en el servidor Python HTTPS, que "decora" el socket HTTP estándar con seguridad adicional sin modificar su funcionalidad base.
+[690][Normal] 3. Arquitectura Orientada a Eventos
+[691][Normal] Manejo de Eventos Críticos:
+[692][Normal] Cierre Elegante: Uso de ConsoleHandler y SetConsoleCtrlHandler para capturar eventos de cierre (Ctrl+C o cierre de ventana), liberando recursos de forma segura.
+[693][Normal] Sincronización de Hilos: La GUI actualiza su estado mediante Invoke() para evitar conflictos en hilos múltiples.
+[694][Normal] Logging Asíncrono: Implementa un sistema de registro concurrente usando Mutex, garantizando integridad al escribir en archivos desde múltiples procesos.
+[696][Normal] 4. Principios SOLID Aplicados
+[697][Normal] Single Responsibility:
+[698][Normal] Cada función gestiona una tarea específica (ejemplo: Limit-Tabs solo controla pestañas, GenerateFinalReport solo genera informes).
+[699][Normal] Open/Closed:
+[700][Normal] La GUI permite añadir nuevos servicios sin modificar código existente (ejemplo: botones dinámicos en $serviceControls).
+[701][Normal] Dependency Inversion:
+[702][Normal] Los módulos de alto nivel (ejemplo: GUI) dependen de abstracciones (interfaces), no de implementaciones concretas, facilitando la sustitución de navegadores o servidores.
+[704][Normal] 5. Escalabilidad y Tolerancia a Fallos
+[705][Normal] Gestión de Recursos:
+[706][Normal] Pool de Conexiones: MongoDB se inicia con parámetros optimizados (--logappend --quiet) para manejar múltiples solicitudes.
+[707][Normal] Auto-Recuperación: Reinicio automático de navegadores si superan el límite de RAM (ControlResourceUsage + Limit-Tabs).
+[708][Normal] Despliegue en Contenedores: Aunque no implementado, la arquitectura permite migrar a Docker (ejemplo: aislando MongoDB en un contenedor).
+[710][Normal] 6. Diagrama de Componentes start_services.ps1.
+[713][Caption] Ilustración 8 Diagrama de Componentes start_services.ps1.
+[715][Normal] Conclusión de la Arquitectura
+[716][Normal] El sistema combina patrones de diseño clásicos (Observer, Factory) con arquitecturas modernas (event-driven, modular), asegurando escalabilidad, mantenibilidad y resiliencia. Esta estructura no solo cumple con los requisitos actuales del Departamento de Informática de la UPR, sino que también establece una base sólida para integraciones futuras (ejemplo: IoT educativo, análisis de datos con IA).
+[717][Estilo5] Modelo de Despliegue.
+[719][Normal] El Modelo de Despliegue es una representación gráfica que ilustra la disposición física de los elementos de software en nodos de hardware y su interacción durante el funcionamiento del sistema. Este modelo es esencial para examinar la arquitectura operativa, la distribución de recursos y las interacciones entre servidores y clientes.
+[720][Caption] Ilustración 9 Diagrama de Modelo de Despliegue de Servidor – BD
+[722][Normal] Cliente Local.
+[723][Normal] Servidor:
+[724][Normal] Hardware:
+[725][Normal] Microprocesador de 2.71 GHz.
+[726][Normal] Memoria RAM total: 756.8 MB (448.3 MB asignados al entorno de ejecución).
+[727][Normal] Almacenamiento: 881.2 MB en discos HDD y SSD.
+[728][Normal] Software:
+[729][Normal] Base de datos: MongoDB, operando en el puerto 27017.
+[730][Normal] Backend: Node.js (puerto 3000) y Python (puerto 8000) para servicios API.
+[731][Normal] Scripts de inicio: PowerShell 7.5.1 ejecuta start_services.ps1 para inicializar componentes.
+[732][Normal] Consumo de Memoria RAM:
+[733][Normal] Consumo por Softwares: 86.0, 307.3, 47.9 y 7.1 Megas.
+[734][Normal] Cliente Local:
+[735][List Paragraph] Hardware:
+[736][List Paragraph] Microprocesador de 2.71 GHz.
+[737][List Paragraph] Memoria RAM: 308.5 MB.
+[738][List Paragraph] Dispositivos periféricos: Impresora.
+[739][List Paragraph] Software:
+[740][List Paragraph] Navegadores web: Microsoft Edge y Chrome para acceder al sistema.
+[741][List Paragraph] Dashboard 4K: Interfaz gráfica de alta resolución para visualización de datos.
+[742][List Paragraph] Herramientas de soporte: Exportación de reportes a PDF y Excel.
+[743][Normal] Consumo de Memoria RAM:
+[744][Normal] Navegadores: 148.6 y 7.1 Megas.
+[745][List Paragraph] Interacciones clave:
+[746][List Paragraph] El cliente accede al servidor mediante protocolo HTTPS.
+[747][List Paragraph] Los servicios de Node.js y Python gestionan las solicitudes del cliente y consultan la base de datos MongoDB.
+[748][List Paragraph] El script de PowerShell asegura la disponibilidad continua de los servicios.
+[750][Normal] Este modelo garantiza una arquitectura escalable, con recursos optimizados para manejar cargas de trabajo moderadas y una interacción fluida entre servidor y cliente. La separación de responsabilidades entre backend (servidor) y frontend (cliente) asegura mantenibilidad y seguridad en la operación del sistema.
+[751][Estilo5] Implementación.
+[753][Estilo1] Sistema de Seguridad.
+[755][Normal] El sistema implementa un esquema de seguridad integral que incluye autenticación mediante usuario y contraseña con encriptación robusta (bcrypt), garantizando la protección de credenciales. El acceso a funciones críticas se gestiona mediante un control basado en roles (Administrador, Profesor, Empleado), limitando acciones según los privilegios asignados. Para prevenir ataques de fuerza bruta, se bloquea temporalmente el acceso tras cinco intentos fallidos de inicio de sesión. Adicionalmente, todas las comunicaciones se protegen con encriptación SSL/TLS 1.3 y RBAC, y se registran logs detallados de actividades sensibles (ejemplo: cambios de permisos o eliminación de datos) para auditorías posteriores, ejemplos:
+[757][Caption] Ilustración 10 Middleware de la Conexión principal a la BD
+[759][Caption] Ilustración 11 Middleware para manejar errores y rutas no encontradas
+[762][Caption] Ilustración 12 mostrarSnackBar.dart
+[764][Estilo1] Seguridad de Datos.
+[765][Normal] Se implementaron mecanismos de protección multi-nivel:
+[766][Caption] Tabla 8 Mecanismos de protección multi-nivel
+[768][Estilo1] Tratamiento de errores.
+[770][Normal] Manejo Proactivo de Errores
+[771][Normal] La gestión de errores es fundamental para garantizar el correcto funcionamiento de la aplicación y para evitar situaciones inesperadas que puedan afectar la experiencia del usuario. Este sistema ha sido diseñado con un enfoque proactivo para minimizar la posibilidad de que se ingresen datos incorrectos, asegurando así la integridad de la información procesada.
+[773][Normal] Validaciones y Mensajes de Error
+[774][Normal] El sistema implementa validaciones en tiempo real que permiten a los usuarios corregir errores antes de enviar la información. Por ejemplo, los campos destinados a recibir datos numéricos están programados para rechazar cualquier entrada que no sea un dígito, mientras que en los campos de texto solo se permiten caracteres alfabéticos. Esto no solo mejora la calidad de los datos ingresados, sino que también optimiza la experiencia del usuario.
+[775][Normal] Los mensajes de error son claros y específicos, proporcionando indicaciones útiles para que los usuarios puedan corregir sus entradas de manera eficiente. Por ejemplo, se puede mostrar un mensaje como: "Correo electrónico no válido: revise el formato", lo que ayuda al usuario a identificar rápidamente el problema.
+[777][Normal] Registro de Errores Técnicos
+[778][Normal] Los errores técnicos que puedan surgir durante el funcionamiento del sistema son registrados en un archivo de logs. Este registro incluye información detallada como la fecha y hora del incidente, el usuario afectado y el tipo de error, lo que facilita el diagnóstico y la resolución por parte del equipo de soporte técnico.
+[780][Normal] Mecanismos de Redundancia
+[781][Normal] Además de las validaciones y el registro de errores, el sistema cuenta con mecanismos de redundancia que previenen caídas inesperadas. Esto asegura que, incluso ante fallos, la aplicación continúe funcionando de manera estable y confiable, ofreciendo una mejor experiencia al usuario.
+[783][Estilo1] Salva de la base de datos.
+[784][Normal] Las copias de seguridad se realizan automáticamente cada 24 horas, almacenándose en servidores externos y cifradas para proteger su integridad. Se conservan hasta 30 días para permitir la recuperación de versiones anteriores en caso de corrupción de datos o eliminación accidental. Mensualmente, se ejecutan pruebas de restauración para verificar la funcionalidad de los backups, asegurando que el sistema pueda recuperarse en menos de una hora tras un incidente crítico.
+[786][Estilo1] Principios de diseño de las interfaces de usuario.
+[787][Normal] Las interfaces priorizan la usabilidad mediante un diseño minimalista y consistente, con paletas de colores institucionales y tipografía legible en todos los dispositivos. La navegación sigue una jerarquía visual clara, agrupando funciones relacionadas (ejemplo: gestión de usuarios en un menú lateral único). Se garantiza accesibilidad cumpliendo estándares WCAG 2.1, como contraste adecuado para daltonismo y soporte para lectores de pantalla. Además, el diseño responsivo adapta elementos como formularios y tablas a pantallas de móviles, tablets y computadoras.
+[789][Estilo1] Justificación de los elementos específicos en la tesis
+[790][Normal] 1. Colores: Azul y rojo, inspirados en los colores institucionales
+[791][Normal] Justificación: La elección de azul y rojo se basa en los colores institucionales de la Universidad de Pinar del Río, lo cual refuerza la identidad institucional y facilita el reconocimiento de la marca. Esto es especialmente relevante para usuarios internos, como profesores y administradores, que están familiarizados con la institución. Además, el uso de colores institucionales asegura consistencia visual con otros materiales oficiales, mejorando la cohesión del sistema.
+[792][Normal] Principio de diseño: Consistencia y branding. Los colores deben alinearse con la identidad organizacional para fortalecer la percepción de profesionalismo y familiaridad.
+[793][Normal] 2. Tipografía: Fuente Segoe, legibilidad y modernidad
+[794][Normal] Justificación: Segoe fue seleccionada por su legibilidad en pantallas digitales y su diseño moderno, optimizado para interfaces de usuario. Su uso en fondos blancos con letras negras y azules asegura un alto contraste, mejorando la visibilidad y comodidad visual, especialmente para usuarios con posibles problemas de visión. Esto es crucial dado que el sistema se utilizará en entornos con variadas condiciones de visualización, como computadoras de escritorio y dispositivos móviles.
+[795][Normal] Principio de diseño: Readability y accesibilidad. La tipografía debe garantizar que el texto sea legible en diferentes resoluciones y condiciones, cumpliendo con estándares como WCAG 2.1 para contraste.
+[796][Normal] 3. Iconografía en botones: Íconos para facilitar la interpretación
+[797][Normal] Justificación: Cada botón incluye un ícono que permite a los usuarios identificar rápidamente su función, reduciendo la curva de aprendizaje. Esto es particularmente útil para usuarios menos experimentados, como administradores o profesores que puedan no estar familiarizados con sistemas informáticos avanzados. Los íconos proporcionan una comunicación visual universal, disminuyendo la dependencia del texto y mejorando la eficiencia en la interacción.
+[798][Normal] Principio de diseño: Intuitiveness y efficiency. Los elementos visuales deben permitir interacciones rápidas y reducir el esfuerzo cognitivo, especialmente en contextos con usuarios diversos.
+[799][Normal] 4. Tooltips: Información adicional en botones
+[800][Normal] Justificación: Los tooltips ofrecen información contextual sobre la función de cada botón sin saturar la interfaz, lo cual es ideal para usuarios nuevos o con poca experiencia. Por ejemplo, al pasar el cursor sobre un botón, se muestra una breve descripción, como "Generar informe de pagos," facilitando el aprendizaje y uso del sistema. Esto es relevante dado que el sistema se diseñó para entornos con limitaciones de capacitación, como zonas rurales con baja conectividad.
+[801][Normal] Principio de diseño: User guidance y learnability. Proporcionar ayuda on-demand mejora la capacidad de los usuarios para aprender y operar el sistema eficazmente.
+[803][Estilo1] Formato de salida de los reportes.
+[804][Normal] Los reportes se generan en formatos estándar (Imágenes, PDF y Excel), permitiendo su uso en diferentes contextos (ejemplo: presentaciones o análisis de datos). Incluyen el logo institucional, fecha de emisión y campos personalizables (ejemplo: filtrar por rango de fechas). Para garantizar eficiencia, los reportes básicos (como listados de profesores) se producen en menos de 10 segundos, optimizados mediante técnicas de paginación y caché. Los archivos PDF mantienen un diseño profesional con márgenes definidos y opción de firma digital.
+[806][Estilo1] Ayuda.
+[807][Normal] El sistema integra múltiples recursos de asistencia: un manual de usuario en PDF y web con capturas paso a paso, tutoriales interactivos para tareas frecuentes (ejemplo: recuperar contraseña) y una sección de preguntas frecuentes (FAQ) actualizable. Desde cualquier pantalla, los usuarios pueden acceder a un botón de Contactar Soporte que redirige a un formulario con opciones para adjuntar capturas de error. Adicionalmente, se ofrece capacitación inicial para nuevos usuarios, enfocada en reducir la curva de aprendizaje a menos de 30 minutos.
+[809][Estilo1] Diagrama de Componentes (Por cada CUS de los principales).
+[811][Caption] Ilustración 13 Diagrama de Componentes.
+[812][Normal] El sistema está estructurado en componentes modulares que interactúan para cumplir con los Casos de Uso principales (CUS). A continuación, se describen los componentes clave y sus relaciones:
+[815][Normal] Módulo de Autenticación y Seguridad
+[816][Normal] Responsabilidad: Gestionar el inicio de sesión, cierre de sesión y recuperación de contraseñas.
+[817][Normal] Componentes:
+[818][Normal] LoginService: Valida credenciales y genera tokens de acceso.
+[819][Normal] AuthController: Maneja las solicitudes HTTPS relacionadas con autenticación.
+[820][Normal] PasswordManager: Encripta contraseñas y gestiona políticas de seguridad.
+[821][Normal] Interacción: Se conecta con la base de datos para verificar usuarios y con el módulo de notificaciones para enviar correos de recuperación.
+[822][Normal] Módulo de Gestión de Usuarios
+[823][Normal] Responsabilidad: Administrar la creación, aprobación, edición y eliminación de usuarios.
+[824][Normal] Componentes:
+[825][Normal] UserService: Lógica de negocio para operaciones CRUD.
+[826][Normal] UserRepository: Accede a la base de datos para almacenar y recuperar información de usuarios.
+[827][Normal] RoleValidator: Verifica y asigna roles (Administrador, Profesor, Empleado).
+[828][Normal] Interacción: Depende del módulo de autenticación para permisos y del módulo de logs para registrar cambios.
+[829][Normal] Módulo de Contratos
+[830][Normal] Responsabilidad: Crear, actualizar, eliminar y exportar contratos.
+[831][Normal] Componentes:
+[832][Normal] ContractService: Gestiona la lógica de contratos (vigencia, firmas).
+[833][Normal] PDFGenerator: Convierte contratos a formato PDF con plantillas predefinidas.
+[834][Normal] StorageManager: Almacena documentos en la nube o servidor local.
+[835][Normal] Interacción: Utiliza el módulo de notificaciones para alertar sobre fechas de vencimiento.
+[836][Normal] Módulo de Gestión de Profesores
+[837][Normal] Responsabilidad: Mantener registros de profesores y generar reportes.
+[838][Normal] Componentes:
+[839][Normal] ProfessorService: Centraliza operaciones como agregar o editar profesores.
+[840][Normal] ExcelExporter: Genera listados en formato Excel.
+[841][Normal] AcademicDataValidator: Verifica títulos y especializaciones.
+[842][Normal] Interacción: Comparte datos con el módulo de contratos para vincular profesores con documentos legales.
+[843][Normal] Módulo de Reportes y Dashboard
+[844][Normal] Responsabilidad: Procesar y visualizar datos estadísticos.
+[845][Normal] Componentes:
+[846][Normal] ReportEngine: Genera reportes en PDF/Excel basados en filtros.
+[847][Normal] DataAnalytics: Procesa datos para gráficos interactivos.
+[848][Normal] DashboardController: Sirve las vistas personalizadas por rol.
+[849][Normal] Interacción: Obtiene datos de los módulos de usuarios, contratos y profesores.
+[850][Normal] Módulo de Soporte Técnico
+[851][Normal] Responsabilidad: Brindar ayuda y manejar incidencias.
+[852][Normal] Componentes:
+[853][Normal] HelpCenter: Contiene FAQs y tutoriales.
+[854][Normal] TicketSystem: Gestiona solicitudes de soporte.
+[855][Normal] NotificationService: Envía respuestas vía correo o mensajes internos.
+[856][Normal] Interacción: Registra errores capturados por el módulo de tratamiento de errores.
+[862][Normal] Diagrama de Relaciones de los Módulos
+[864][Caption] Ilustración 14 Diagrama de Relaciones de los Módulos
+[866][Normal] Este diagrama refleja la arquitectura modular del sistema, donde cada componente encapsula funcionalidades específicas y se comunica mediante interfaces bien definidas. Los principales flujos de datos y dependencias están representados para garantizar escalabilidad y mantenibilidad.
+[869][Normal] Diagrama de Relaciones del script start_services.ps1
+[871][Caption] Ilustración 15 Diagrama de Relaciones del script start_services.ps1
+[872][Normal] Servicios Principales:
+[873][Normal] MongoDB: Base de datos que almacena la información.
+[874][Normal] Backend (Node.js): Expone una API REST para el frontend.
+[875][Normal] Frontend (Flutter): Aplicación web compilada que consume la API.
+[876][Normal] Servidor HTTPS (Python): Sirve los archivos estáticos del frontend y maneja solicitudes HTTPS.
+[877][Normal] Navegadores: Acceden al servidor Python para mostrar la aplicación.
+[878][Normal] Subsistemas:
+[879][Normal] Certificados SSL: Garantizan conexiones seguras entre navegadores y el servidor Python.
+[880][Normal] Script PowerShell (start_services.ps1):
+[881][Normal] Inicia/detiene servicios (MongoDB, Node.js, Python).
+[882][Normal] Genera certificados SSL.
+[883][Normal] Gestiona navegadores (Chrome/Edge).
+[884][Normal] GUI de Control: Interfaz gráfica para monitorear y controlar los servicios.
+[885][Normal] Flujos Clave:
+[886][Normal] Datos: El frontend (Flutter) se comunica con el backend (Node.js), que a su vez interactúa con MongoDB.
+[887][Normal] Hosting: El servidor Python sirve los archivos del frontend a los navegadores.
+[888][Normal] Seguridad: Los certificados SSL protegen la comunicación entre navegadores y el servidor.
+[889][Normal] Gestión Automatizada:
+[890][Normal] El script PowerShell centraliza la administración de todos los componentes, incluyendo limpieza de caché, monitoreo de RAM y generación de logs.
+[892][Normal] Este diagrama refleja la arquitectura modular del sistema y las dependencias críticas. Para una vista detallada de los componentes técnicos, revisa el código del script start_services.ps1.
+[894][Estilo5] Prueba.
+[895][Caption] Tabla 9 Plantilla para Caso de Prueba: Iniciar Sesión.
+[897][Caption] Tabla 10 Plantilla para Caso de Prueba: Crear Contrato.
+[898][Caption] Tabla 11 Plantilla para Caso de Prueba: Exportar Lista de Profesores a Excel.
+[899][Estilo5] Conclusiones Parciales del Capítulo III
+[900][Caption] La implementación y despliegue del sistema permitieron validar su funcionalidad y eficiencia. Las pruebas realizadas demuestran una reducción significativa en el tiempo de gestión y la eliminación de errores en los procesos de pago. El sistema cumple con los estándares de seguridad y usabilidad requeridos, y su arquitectura modular facilita futuras ampliaciones y adaptaciones a otros contextos académicos. Estos resultados confirman la hipótesis planteada y demuestran el impacto positivo de la solución desarrollada.
+[901][Heading 1] CONCLUSIONES.
+[903][Normal] Automatización eficiente de procesos administrativos:
+[904][Normal] El sistema desarrollado cumple con el objetivo de automatizar la gestión de contratos determinados y pagos por sobrecarga docente, reduciendo un 60% el tiempo dedicado a tareas manuales. Esto se logró mediante flujos de trabajo digitalizados, validaciones en tiempo real y generación automática de documentos legales, asegurando precisión y cumplimiento normativo.
+[905][Normal] Seguridad y privacidad de datos:
+[906][Normal] Se implementó un modelo de seguridad robusto que incluye encriptación de contraseñas (bcrypt), control de acceso basado en roles y auditoría de logs, garantizando la integridad de la información sensible y alineándose con estándares internacionales como el GDPR.
+[907][Normal] Usabilidad y adopción por usuarios no técnicos:
+[908][Normal] El diseño centrado en el usuario, con una interfaz intuitiva y responsiva, permitió una curva de aprendizaje de menos de 30 minutos, facilitando la adopción por parte de profesores y administrativos, incluso con diversidad de competencias digitales.
+[909][Normal] Transparencia en la gestión financiera:
+[910][Normal] La integración de reportes exportables en PDF y Excel, junto con un registro detallado de modificaciones, brindó visibilidad total sobre los pagos por sobrecarga docente, fortaleciendo la rendición de cuentas y la confianza institucional.
+[911][Normal] Escalabilidad técnica demostrada:
+[912][Normal] Las pruebas de estrés con 50 usuarios simultáneos y el uso eficiente de recursos (límite de RAM y pestañas) validaron que la arquitectura modular del sistema soporta cargas operativas crecientes sin degradación del rendimiento.
+[913][Heading 1] RECOMENDACIONES.
+[915][Normal] Para la puesta en práctica y generalización del sistema:
+[916][Normal] Capacitación estructurada: Implementar un programa de formación bimestral para usuarios, enfocado en funciones avanzadas (ejemplo: personalización de reportes) y concienciación sobre ciberseguridad.
+[917][Normal] Migración a infraestructura cloud: Priorizar el despliegue en servidores en la nube (AWS/Azure) para garantizar alta disponibilidad y recuperación ante desastres, especialmente durante períodos críticos como el cierre de semestres académicos.
+[918][Normal] Integración con sistemas institucionales: Establecer una API para conectar el sistema con la plataforma de nómina de la universidad, evitando duplicidad de datos y agilizando los pagos.
+[919][Normal] Para complementar y dar continuidad a la investigación:
+[920][Normal] Explorar inteligencia artificial predictiva: Desarrollar un módulo que analice patrones históricos para predecir necesidades futuras de contratación o los pagos por sobrecarga docente, usando técnicas de machine learning.
+[921][Normal] Implementar blockchain para contratos: Investigar el uso de smart contracts en una red blockchain privada para automatizar la firma y validación de documentos, aumentando la inmutabilidad de los registros.
+[922][Normal] Estudio de impacto socio-técnico: Realizar una evaluación cualitativa a 12 meses de implementación, midiendo cómo el sistema ha influido en la carga laboral del personal administrativo y la percepción de equidad entre docentes.
+[923][Normal] REFERENCIAS BIBLIOGRÁFICAS.
+[924][Normal] Abran, A. (2020). Software metrics and software metrology. Wiley-IEEE Press. https://doi.org/10.1002/9781119524550
+[925][Normal] Bass, L., Clements, P., & Kazman, R. (2021). Software architecture in practice (4th ed.). Addison-Wesley.
+[926][Normal] Fielding, R. T. (2000). Architectural styles and the design of network-based software architectures [Doctoral dissertation, University of California, Irvine]. https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm
+[927][Normal] MongoDB, Inc. (2022). MongoDB 6.0: The Developer Data Platform. https://www.mongodb.com/docs/manual/
+[928][Normal] Nielsen, J. (2020). Usability engineering: A practitioner’s guide to user experience design. Morgan Kaufmann.
+[929][Normal] OWASP Foundation. (2021). OWASP Top 10: Critical Risks in Web Applications. https://owasp.org/www-project-top-ten/
+[930][Normal] Pérez, J., & González, M. (2019). Gestión de contratos en instituciones educativas: Un enfoque tecnológico. Editorial Universitaria.
+[931][Normal] Sommerville, I. (2021). Software engineering (11th ed.). Pearson.
+[932][Normal] Tanenbaum, A. S., & Bos, H. (2022). Modern operating systems (5th ed.). Pearson
+[933][Normal] W3C. (2023). Web Content Accessibility Guidelines (WCAG) 2.2. https://www.w3.org/TR/WCAG22/
+[934][Normal] Flutter Team. (2025). Flutter 3.19 release notes. https://docs.flutter.dev
+[935][Normal] MongoDB Inc. (2025). MongoDB 8.0 Security Features. https://www.mongodb.com/docs/v8.0
+[936][Normal] MINED-Cuba. (2024). Resolución 215/2024: Pagos por Sobrecarga Docente.
+[937][Normal] Laudon, K. C., & Laudon, J. P. (2020). Management information systems: Managing the digital firm. Pearson.
+[938][Normal] Smith, J. (2020). Information Systems Efficiency in Developing Countries. Journal of IT Management.
+[939][Normal] Davis, F. D. (1989). Perceived Usefulness, Perceived Ease of Use, and User Acceptance of Information Technology. MIS Quarterly.
+[940][Normal] BIBLIOGRAFÍA.
+[941][Normal] Bass, L., Clements, P., & Kazman, R. (2021).
+[942][Normal] MongoDB, Inc. (2022).
+[943][Normal] Nielsen, J. (2020).
+[944][Normal] OWASP Foundation. (2021).
+[945][Normal] Pérez, J., & González, M. (2019).
+[946][Normal] W3C. (2023).
+[949][Normal] ANEXOS.
+[951][Normal] Anexo A: Capturas del script start_services.ps1 gestionando recursos.
+[953][Caption] Ilustración 16 Función para monitorear el uso de recursos y mostrar el uso de RAM.
+[954][Normal] Anexo B: Modelo de contrato docente generado automáticamente (Formato PDF).
+[956][Normal] Anexo C: Capturas de pantalla de la interfaz de usuario (Dashboard y gestión de pagos).
+[958][Caption] Ilustración 17 Dashboard de Distribución de Estados
+[960][Normal] Anexo D: Script de creación de la base de datos en MongoDB (archivo db.js).
+[963][Caption] Ilustración 18 Script de creación de la base de datos en MongoDB (archivo db.js).
+[965][Normal] Anexo E: Resultados detallados de las pruebas de estrés.
+[967][Caption] Tabla 12 Rendimiento bajo carga de usuarios simultáneos.
+[968][Normal] Herramienta: JMeter v5.6
+[969][Normal] Nota: Umbral de error aceptable ≤1.5% (ISO 25010).
+[972][Normal] Anexo F: Certificado SSL generado para el servidor HTTPS (archivo ca-key.pem, key.pem, cert.pem").
+[974][Caption] Ilustración 19 Generar clave privada CA – 4096 bits
+[976][Caption] Ilustración 20 Generar clave privada del servidor 4096 bits
+[978][Caption] Ilustración 21 Certificado SSL generado para el servidor HTTPS (archivo cert.pem).
+[979][Normal] Anexo G: Factor de Complejidad Técnica (FCT) y Factor de Ambiente (FA)
+[981][Normal] A continuación, se detalla los factores técnicos y ambientales utilizados en la metodología de estimación de este proyecto, basada en el estándar UCP (Use Case Points):
+[982][Normal] Factor de Complejidad Técnica (FCT)
+[983][Normal] 13 criterios que miden la complejidad técnica del proyecto. Cada uno se califica de 0 a 5 (0 = irrelevante, 5 = crítico).
+[984][Normal] La suma ponderada de estos determina el FCT, que ajusta los puntos de casos de uso.
+[985][Caption] Tabla 13 Factor de Complejidad Técnica (FCT)
+[987][Normal] Total, FCT:
+[988][Normal] (sobre máximo teórico 62.5),
+[991][Normal] 2. Factores Ambientales (FA)
+[992][Normal] 8 criterios que evalúan la capacidad del equipo y el entorno de desarrollo. Se califican de 0 a 5 (0 = muy débil, 5 = excelente).
+[993][Caption] Tabla  Factores Ambientales (FA)
+[995][Normal] Total, FA:
+[996][Normal] (sobre máximo teórico 35)
+[999][Normal] 3. Impacto en el Proyecto
+[1000][Normal] FCT alto (1.015) → Aumenta el PCUA → Mayor esfuerzo y costo.
+[1001][Normal] FA bajo (0.605) → Reduce el PCUA → Menos esfuerzo y costo.
+[1002][Normal] En este caso:
+[1003][Normal] FCT = 1.015 y FA = 0.605 reflejan un equilibrio entre complejidad técnica manejable y un equipo competente.
+[1005][Normal] Anexo H: Instrumentos de Diagnóstico
+[1007][Normal] Guía de Análisis Documental (50 contratos históricos)
+[1008][Normal] Variables evaluadas:
+[1009][Normal] Consistencia en cláusulas financieras.
+[1010][Normal] Errores en cálculos de horas/docente.
+[1011][Normal] Ausencia de firmas digitales.
+[1012][Normal] Incumplimiento de Resolución 210/2023 (MES-Cuba).
+[1013][Normal] Resultado agregado:
+[1014][Normal] 40% de contratos con cláusulas desactualizadas.
+[1015][Normal] 25% con inconsistencias en datos personales.
+[1016][Normal] Anexo I: Cuestionario de Encuesta
+[1017][Normal] (Aplicado a 21 profesores y 15 administrativos)
+[1018][Normal] Escala Likert (1-5):
+[1019][Normal] "¿Con qué frecuencia identifica errores en sus pagos por sobrecarga docente?"
+[1020][Normal] 1: Nunca → 5: Siempre
+[1021][Normal] Selección múltiple:
+[1022][Normal] "¿Qué funcionalidad considera más urgente en un sistema de gestión?"
+[1023][Normal] Notificaciones automáticas.
+[1024][Normal] Reportes financieros en tiempo real.
+[1025][Normal] Firma digital de contratos.
+[1026][Normal] Acceso offline desde móviles.
+[1027][Normal] Pregunta abierta:
+[1028][List Paragraph] "Describa un problema recurrente en la gestión manual actual."
+[1030][Normal] Anexo J: Resultados de validación por especialistas.
+[1032][Normal] Entrevista semiestructurada (Director de Recursos Humanos UPR)
+[1033][Normal] Hallazgos clave:
+[1034][Normal] "El 80% del tiempo en nóminas se dedica a corregir errores en hojas Excel."
+[1035][Normal] "Necesitamos integración con el sistema central de pagos de la universidad."
+[1036][Normal] "La trazabilidad de modificaciones en contratos es crítica para auditorías."
+[1037][Normal] Recomendación implementada:
+[1038][Normal] Módulo de historial de cambios con firma digital (RFC-10).
+[1040][Normal] Anexo K: Validación por Especialistas
+[1042][Normal] Plantilla de Informe:
+[1043][Caption] Tabla  Plantilla de Informe
+[1045][Normal] Anexo L: Esquema de Manual de Usuario
+[1047][Normal] Estructura del PDF Interactivo:
+[1048][Normal] Acceso al Sistema:
+[1049][Normal] Video-tutorial: Inicio de sesión y recuperación de contraseña.
+[1050][Normal] Módulo de Contratos:
+[1051][Normal] Pasos para crear/exportar contratos (capturas con anotaciones).
+[1052][Normal] Dashboard 4K:
+[1053][Normal] Leyenda interactiva de gráficos (hover para explicaciones).
+[1054][Normal] Soporte Técnico:
+[1055][Normal] Formulario integrado para reportar fallos + QR de contacto.
+[1056][Normal] Preguntas Frecuentes (FAQ):
+[1057][Normal] Búsqueda por palabras clave (ejemplo: "pago", "exportar Excel").
+[1058][Normal] Enlace de descarga:
+[1059][Normal] http://repositorio.upr.edu.cu/manuales/gestor_contratos
+[1061][Normal] Anexo M: Implementaciones al server.js
+[1062][ds-markdown-paragraph] Seguridad:
+[1063][ds-markdown-paragraph] Añadido helmet para cabeceras de seguridad
+[1064][ds-markdown-paragraph] Implementado rate limiting con express-rate-limit
+[1065][ds-markdown-paragraph] Añadido express-mongo-sanitize para prevenir inyección NoSQL
+[1066][ds-markdown-paragraph] Configuración más estricta de CORS
+[1067][ds-markdown-paragraph] Uso de hpp para prevenir parameter pollution
+[1068][ds-markdown-paragraph] Estructura y Organización:
+[1069][ds-markdown-paragraph] Agrupación lógica de rutas por funcionalidad
+[1070][ds-markdown-paragraph] Mejor manejo de errores con logging detallado
+[1071][ds-markdown-paragraph] Validación de variables de entorno requeridas
+[1072][ds-markdown-paragraph] Prefijo /# para todas las rutas
+[1073][ds-markdown-paragraph] Performance:
+[1074][ds-markdown-paragraph] Compresión de respuestas con compression
+[1075][ds-markdown-paragraph] Límite de tamaño para bodies de requests
+[1076][ds-markdown-paragraph] Manejo adecuado de conexiones con timeout
+[1077][ds-markdown-paragraph] Mantenibilidad:
+[1078][ds-markdown-paragraph] Logging estructurado con Winston
+[1079][ds-markdown-paragraph] Documentación JSDoc para funciones principales
+[1080][ds-markdown-paragraph] Manejo de señales para shutdown limpio
+[1081][ds-markdown-paragraph] Mejores mensajes de error y logging
+[1082][ds-markdown-paragraph] Robustez:
+[1083][ds-markdown-paragraph] Manejo de errores mejorado
+[1084][ds-markdown-paragraph] Validación de dependencias
+[1085][ds-markdown-paragraph] Cierre limpio del servidor
+[1087][Normal] Anexo N: Población y Muestra.
+[1088][Normal] Población: 30 administrativos y 120 profesores del Departamento de Informática.
+[1089][Normal] Muestra: 15 administrativos (50%) y 21 profesores (100% del grupo afectado por los pagos por sobrecarga docente).
+[1090][Normal] Criterios de inclusión:
+[1091][Normal] Administrativos con >1 año en gestión de contratos.
+[1092][Normal] Profesores con contratos temporales (últimos 3 años).
+[1093][Normal] Exclusión
+[1094][Normal] : Personal sin acceso a dispositivos digitales (6.7%).
+[1096][Normal] Validación Iterativa
+[1098][Caption] Tabla 16 Validación Iterativa
+[1100][Normal] Anexo O: Estudio Benchmark: Flutter vs. React para Sistemas de Gestión Académica
+[1102][Normal] Objetivo: Comparar el rendimiento, usabilidad y viabilidad de Flutter y React en el contexto del sistema de gestión de contratos docentes, considerando las limitaciones tecnológicas de Cuba.
+[1103][Normal] 1. Metodología
+[1104][Normal] Entorno de Prueba:
+[1105][Normal] Hardware: Laptop Lenovo i5-8250U, 8GB RAM, SSD 256GB (equivalente a equipos universitarios cubanos).
+[1106][Normal] SO: Windows 10 + Ubuntu 20.04 (para pruebas multiplataforma).
+[1107][Normal] Métricas Evaluadas:
+[1108][Normal] Rendimiento (CPU, RAM, tiempo de carga).
+[1109][Normal] Desarrollo (curva de aprendizaje, herramientas).
+[1110][Normal] Mantenibilidad (escalabilidad, comunidad).
+[1111][Normal] Compatibilidad (offline-first, normativas locales).
+[1112][Normal] 2. Resultados Detallados
+[1113][Caption] Tabla 17 Estudio Benchmark: Flutter vs. React
+[1115][Normal] 3. Pruebas Técnicas
+[1116][Normal] Generación de PDF:
+[1117][Normal] Flutter (pdf: ^3.10.0): 0.8s/contrato.
+[1118][Normal] React (react-pdf): 1.2s/contrato (+50% tiempo).
+[1119][Normal] Consumo API REST:
+[1120][Normal] Flutter (dio): 200ms/request (promedio).
+[1121][Normal] React (axios): 240ms/request.
+[1122][Normal] 4. Ventajas Clave de Flutter para el Proyecto
+[1123][Normal] Multiplataforma Real: Mismo código para web, móvil (Android/iOS) y escritorio.
+[1124][Normal] Optimizado para Hardware Limitado: Menor consumo de RAM vs. React (crítico en Cuba).
+[1125][Normal] Cumplimiento Legal: Soporte para firmas digitales con paquetes como signature.
+[1126][Normal] 5. Desventajas y Mitigación
+[1127][Normal] Curva de Aprendizaje de Dart:
+[1128][Normal] Solución: 80% del equipo ya dominaba Java (similar a Dart).
+[1129][Normal] Menor soporte para gráficos 3D:
+[1130][Normal] Solución: Usamos fl_chart para dashboards 2D (suficiente para informes).
+[1131][Normal] 6. Conclusión del Benchmark
+[1132][Normal] Flutter es superior para este proyecto por:
+[1133][Normal] Rendimiento: 25% más rápido en carga y 30% menos uso de RAM.
+[1134][Normal] Offline-First: Soporte nativo para trabajar sin Internet (clave en zonas rurales).
+[1135][Normal] Costos: $0 en licencias y menor necesidad de hardware potente.
+[1136][Normal] React sería viable si:
+[1137][Normal] El equipo tuviera experiencia previa en JavaScript.
+[1138][Normal] Se requirieran gráficos 3D complejos (ejemplo: simuladores docentes).
+[1140][Normal] Elegimos Flutter tras un benchmark riguroso. Superó a React en rendimiento (25% más rápido), eficiencia (120MB RAM vs. 180MB), y soporte offline, crítico para la Universidad de Pinar del Río. Además, su integración con PowerShell y MongoDB redujo costos de desarrollo en un 40%.
+[1142][Normal] Documentación de Soporte:
+[1143][Normal] Anexo E: Resultados completos de pruebas de estrés.
+[1144][Normal] Anexo K: Certificados de capacitación en Flutter del equipo.
+[1146][Normal] Nota: Este benchmark se alinea con hallazgos de Google I/O 2024 y casos de éxito en LATAM (ejemplo: UNAL Colombia).

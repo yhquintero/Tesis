@@ -1,0 +1,41 @@
+{
+  "name": "Prenómina UPR · Contratos y sobrecarga docente",
+  "short_name": "Prenómina UPR",
+  "description": "Gestión de contratos determinados y pagos por sobrecarga docente del Departamento de Informática de la Universidad de Pinar del Río.",
+  "lang": "es",
+  "dir": "ltr",
+  "start_url": "/#/panel",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "orientation": "any",
+  "background_color": "#F4F8F3",
+  "theme_color": "#1B5E20",
+  "categories": ["education", "productivity", "business"],
+  "icons": [
+    {
+      "src": "/assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/logo-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nuevo contrato",
+      "url": "/#/contratos",
+      "description": "Ir a la gestión de contratos"
+    },
+    {
+      "name": "Prenómina",
+      "url": "/#/prenomina",
+      "description": "Abrir la calculadora de prenómina"
+    }
+  ]
+}
