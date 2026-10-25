@@ -91,14 +91,17 @@ export function barrasHorizontales(lienzo, datos, { alto = 240, sufijo = '' } = 
       ctx.fillStyle = '#18201A';
       ctx.textAlign = 'left';
       ctx.font = '700 11px "Segoe UI", system-ui, sans-serif';
-      ctx.fillText(`${item.valor}${sufijo}`, margenIzq + longitud + 8, y + grosor / 2);
+      const etiquetaValor = formato ? formato(Number(item.valor || 0)) : `${item.valor}${sufijo}`;
+      ctx.fillText(etiquetaValor, margenIzq + longitud + 8, y + grosor / 2);
     });
   };
   pintar();
   observar(lienzo, pintar);
   lienzo.setAttribute(
     'aria-label',
-    datos.map((d) => `${d.etiqueta}: ${d.valor}${sufijo}`).join(', '),
+    datos
+      .map((d) => `${d.etiqueta}: ${formato ? formato(Number(d.valor || 0)) : `${d.valor}${sufijo}`}`)
+      .join(', '),
   );
   return pintar;
 }

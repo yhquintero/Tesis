@@ -53,7 +53,13 @@ async function peticion(ruta, { method = 'GET', body, raw = false, reintentar = 
     throw new ApiError(0, 'SIN_RED', 'No hay conexión con el servidor local. Compruebe que esté iniciado.');
   }
 
-  if (respuesta.status === 401 && reintentar && !ruta.startsWith('/auth/login')) {
+  if (
+    respuesta.status === 401 &&
+    reintentar &&
+    !ruta.startsWith('/auth/login') &&
+    !ruta.startsWith('/auth/me') &&
+    document.cookie.includes('pn_refresh')
+  ) {
     const ok = await renovarSesion();
     if (ok) return peticion(ruta, { method, body, raw, reintentar: false });
     window.dispatchEvent(new CustomEvent('sesion-expirada'));

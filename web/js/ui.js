@@ -8,7 +8,7 @@ export function h(etiqueta, atributos = {}, ...hijos) {
   const elemento = document.createElement(etiqueta);
   for (const [clave, valor] of Object.entries(atributos || {})) {
     if (valor === null || valor === undefined || valor === false) continue;
-    if (clave === 'clase') elemento.className = valor;
+    if (clave === 'clase' || clave === 'class') elemento.className = valor;
     else if (clave === 'html') elemento.innerHTML = valor;
     else if (clave === 'texto') elemento.textContent = valor;
     else if (clave === 'on') {
@@ -17,14 +17,10 @@ export function h(etiqueta, atributos = {}, ...hijos) {
       }
     } else if (clave === 'dataset') Object.assign(elemento.dataset, valor);
     else if (clave === 'estilo') Object.assign(elemento.style, valor);
-    else if (clave.includes('-') || clave.startsWith('aria') || clave.startsWith('data')) {
-      elemento.setAttribute(clave, valor === true ? '' : String(valor));
+    else if (['value', 'checked', 'selected', 'disabled', 'indeterminate'].includes(clave)) {
+      elemento[clave] = valor;
     } else {
-      try {
-        elemento[clave] = valor;
-      } catch {
-        elemento.setAttribute(clave, String(valor));
-      }
+      elemento.setAttribute(clave, valor === true ? '' : String(valor));
     }
   }
   for (const hijo of hijos.flat(10)) {
@@ -167,10 +163,13 @@ const COLOR_ESTADO = {
   anulado: 'gris',
 };
 
+const COLORES_CHIP = new Set(['verde', 'azul', 'ambar', 'rojo', 'gris', 'teal', 'oro']);
+
 export function chip(estado, etiqueta) {
+  const clase = COLORES_CHIP.has(estado) ? estado : COLOR_ESTADO[estado] || 'gris';
   return h(
     'span',
-    { class: `chip ${COLOR_ESTADO[estado] || 'gris'}` },
+    { class: `chip ${clase}` },
     etiqueta || ETIQUETA_ESTADO[estado] || estado,
   );
 }
@@ -336,8 +335,7 @@ export function campo({
   deshabilitado = false,
 }) {
   const id = `campo-${nombre}-${++contadorId}`;
-  let control;
-  if (opciones) {
+  let control;  if (opciones) {
     control = h(
       'select',
       { id, name: nombre, requerido, deshabilitado },
@@ -355,6 +353,7 @@ export function campo({
     control = h('input', { id, name: nombre, type: tipo, requerido, placeholder, deshabilitado });
     control.value = valor ?? '';
   }
+  control.setAttribute('aria-label', etiqueta);
   const contenedor = h(
     'div',
     { class: `campo${error ? ' error' : ''}` },

@@ -1,5 +1,5 @@
 /* Service worker de Prenómina UPR: carcasa offline y caché de activos. */
-const VERSION = 'prenomina-v1';
+const VERSION = 'prenomina-v2';
 const CARCASA = [
   '/',
   '/index.html',
@@ -59,17 +59,14 @@ self.addEventListener('fetch', (evento) => {
   }
 
   evento.respondWith(
-    caches.match(solicitud).then((cacheada) => {
-      if (cacheada) return cacheada;
-      return fetch(solicitud)
-        .then((respuesta) => {
-          if (respuesta.ok && url.origin === location.origin) {
-            const copia = respuesta.clone();
-            caches.open(VERSION).then((cache) => cache.put(solicitud, copia));
-          }
-          return respuesta;
-        })
-        .catch(() => Response.error());
-    }),
+    fetch(solicitud)
+      .then((respuesta) => {
+        if (respuesta.ok && url.origin === location.origin) {
+          const copia = respuesta.clone();
+          caches.open(VERSION).then((cache) => cache.put(solicitud, copia));
+        }
+        return respuesta;
+      })
+      .catch(() => caches.match(solicitud).then((cacheada) => cacheada || Response.error())),
   );
 });

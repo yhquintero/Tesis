@@ -22,6 +22,8 @@ export function renderLogin(raiz, { onEntrar }) {
     requerido: true,
     placeholder: '••••••••',
   });
+  correo.control.autocomplete = 'username';
+  clave.control.autocomplete = 'current-password';
   const verClave = h(
     'button',
     {

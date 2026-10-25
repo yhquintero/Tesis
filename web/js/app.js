@@ -107,6 +107,10 @@ let montado = false;
 /* ------------------------------------------------------------------ */
 
 async function arrancar() {
+  if (!document.cookie.includes('pn_csrf=')) {
+    renderLogin(app, { onEntrar: entrar });
+    return;
+  }
   try {
     const { usuario } = await api.me();
     await iniciarApp(usuario);
